@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+h1{
+	color: orange;
+}
+	
+.logout{
+	margin: 0 auto;
+	width: 300px;
+	min-height: 300px;
+	padding: 10px;
+	box-sizing: border-box;
+	text-align: center;
+	margin-top: 200px;
+}
+

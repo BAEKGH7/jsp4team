@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+h1{
+	color: orange;
+}
+
+.id-alert, .name-alert, .pw-alert {
+	background-color: gray;
+}
+
+.alert {
+	color: red;
+}
