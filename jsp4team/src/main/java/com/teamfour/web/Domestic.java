@@ -30,7 +30,7 @@ public class Domestic extends HttpServlet {
 		
 		BookDAO dao = new BookDAO();
 		List<BookDTO> list = dao.domesticList(page);
-		int totalBooks = dao.domTotalBooks();
+		int totalBooks = dao.totalBooks("domesticview");
 		
 		request.setAttribute("domesticList", list);
 		request.setAttribute("totalBooks", totalBooks);

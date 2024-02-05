@@ -149,39 +149,17 @@ public class BookDAO extends AbstractDAO {
 		
 		return list;
 	}
-
-	public int domTotalBooks() {
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT count(*) FROM domesticview";
-		int result = 0;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs, pstmt, con);
-		}
-		
-		return result;
-	}
 	
-	public int forTotalBooks() {
+	public int totalBooks(String viewname) {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT count(*) FROM foreignview";
+		String sql = "SELECT count(*) FROM ?";
 		int result = 0;
 		
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, viewname);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
