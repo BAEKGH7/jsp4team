@@ -25,9 +25,6 @@ public class Detail extends HttpServlet {
 		BookDAO dao = new BookDAO();
 		BookDTO dto = dao.detailBook(request.getParameter("isbn"));
 		
-		BookDAO dao = new BookDAO();
-		BookDTO dto = dao.detail(request.getParameter("isbn"));
-		
 		request.setAttribute("isbn", request.getParameter("isbn"));
 		request.setAttribute("book", dto);
 		
