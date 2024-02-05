@@ -15,16 +15,18 @@ body {
 
 header {
 	grid-area: header;
-	background-color: orange;
+	background-color: #fb8500;
 }
 main {
 	grid-area: main;
 }
 aside {
 	grid-area: side;
+	background-color: #023047;
 }
 footer {
 	grid-area: footer;
+	background-color: #ffb703;
 }
 
 .colorA {
