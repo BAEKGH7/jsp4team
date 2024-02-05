@@ -57,7 +57,7 @@ public class BookDAO extends AbstractDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT bookcover, author, publisher, totalpage, isbn, "
-				+ "detail, bookindex, profile FROM book WHERE isbn=?";
+				+ "bookdetail, bookindex, profile FROM book WHERE isbn=?";
 
 		
 		try {

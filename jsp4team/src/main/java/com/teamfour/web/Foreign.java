@@ -14,11 +14,11 @@ import com.teamfour.dao.BookDAO;
 import com.teamfour.dto.BookDTO;
 import com.teamfour.util.Util;
 
-@WebServlet("/domestic")
-public class Domestic extends HttpServlet {
+@WebServlet("/foreign")
+public class Foreign extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Domestic() {
+    public Foreign() {
         super();
     }
 
@@ -36,7 +36,7 @@ public class Domestic extends HttpServlet {
 		request.setAttribute("totalBooks", totalBooks);
 		request.setAttribute("page", page);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("domestic.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("foreign.jsp");
 		rd.forward(request, response);
 	}
 
