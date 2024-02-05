@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="com.teamfour.dto.CommentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -28,6 +29,15 @@
 
 </head>
 <body>
+<%
+//데이터베이스 연결
+Connection conn = null;
+String id="";
+String pw ="";
+String url="";
+//값 가져오기
+//화면에 출력하기
+%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
