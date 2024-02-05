@@ -116,28 +116,27 @@ public class BookDAO extends AbstractDAO {
 		
 		return list;
 	}
-	public List<BookDTO> foreignList(int page) {
-		List<BookDTO> list = new ArrayList<BookDTO>();
+	
+	public BookDTO detailBook(String isbn) {
+		BookDTO dto = new BookDTO();
+		
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock FROM foreignview LIMIT ?, 10";
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, bookdetail FROM book WHERE isbn = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, (page-1) * 10);
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				BookDTO dto = new BookDTO();
 				dto.setIsbn(rs.getString("isbn"));
 				dto.setBooktitle(rs.getString("booktitle"));
 				dto.setBookprice(rs.getInt("bookprice"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setStock(rs.getInt("stock"));
-				//dto.setCondition(rs.getString("bookcondition"));
-				list.add(dto);
+				dto.setCondition(rs.getString("bookdetail"));
 			}
 			
 		} catch (SQLException e) {
@@ -147,8 +146,10 @@ public class BookDAO extends AbstractDAO {
 		}
 		
 		
-		return list;
+		return dto;
 	}
+	
+	
 	
 	public int totalBooks(String viewname) {
 		Connection con = db.getConnection();

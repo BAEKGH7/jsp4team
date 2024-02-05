@@ -1,3 +1,6 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.teamfour.dto.CommentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,24 +23,37 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 여기에 스크립트 코드 삽입 -->
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#comment-btn").click(function() {
-			alert("!!!!");
-		});
+	$("#comment-btn").click(function() {
+		let content = $("#commentcontent").val();
+		console.log(content);
+		/* let cno = ${detail.no};
+		if (content.length < 5) {
+			alert("댓글은 다섯글자 이상으로 적어주세요.");
+			$("#commentcontent").focus();
+		} else {
+			let form = $('<form></form>');
+			form.attr('name', 'form');
+			form.attr('method', 'post');
+			form.attr('action', './detail');
+			form.append($('<input/>', {
+				type : 'hidden',
+				name : 'commentcontent',
+				value : content
+			}));//json
+			form.append($('<input/>', {
+				type : 'hidden',
+				name : 'cno',
+				value : cno
+			}));
+			form.appendTo("body");
+			form.submit();
+		} */
 	});
 </script>
 
 </head>
 <body>
-<%
-//데이터베이스 연결
-Connection conn = null;
-String id="";
-String pw ="";
-String url="";
-//값 가져오기
-//화면에 출력하기
-%>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -57,16 +73,17 @@ String url="";
 				<div class="card" style="width: 100%; margin: auto;">
 					<img
 						src="https://th.bing.com/th/id/R.6bd1767fcd505755a61ae6665a48895d?rik=En3i4Ub2INbYBw&riu=http%3a%2f%2fmoonhak.co.kr%2fhome%2fwp-content%2fuploads%2fbookcover%2f%ED%95%B4%EB%A6%AC%ED%8F%AC%ED%84%B01%ED%83%84_72.jpg&ehk=u4qeiFZTu2A%2bWeN0qPLivscWeGztLPzS8OyRd%2b75tKE%3d&risl=&pid=ImgRaw&r=0"
-						class="card-img-top" alt="...">
+						class="card-img-top" alt="bookcover"> ${book.bookcover}
 					<div class="card-body">
-						<h5 class="card-title">해리 포터와 마법사의 돌 1</h5>
+						<h5 class="card-title">${book.booktitle }</h5>
 						<br>
 						<div class="card" style="width: 800px;">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item">조앤.K.롤링 저 / 강동혁 역</li>
-								<li class="list-group-item">출판사 : Pottermore</li>
-								<li class="list-group-item">페이지수 : 9781781106303</li>
-								<li class="list-group-item">ISBN : 9781781106303</li>
+								<li class="list-group-item">${book.author }</li>
+								<li class="list-group-item">출판사 : ${book.publisher }</li>
+								<li class="list-group-item">출판 날짜 :${book.publishdate }</li>			
+								<li class="list-group-item">ISBN : ${book.isbn} </li>
+								<li class="list-group-item">정가 : ${book.bookprice} 원 </li>
 							</ul>
 						</div>
 						<br>
@@ -92,10 +109,12 @@ String url="";
 							class="accordion-collapse collapse show">
 							<div class="accordion-body">
 								<strong><br>
-									<h1>해리 포터 세대의, 해리 포터 세대를 위한, 해리 포터 세대에 의한 새 번역!</h1> <br>
+									<h1>
+									해리 포터 세대의, 해리 포터 세대를 위한, 해리 포터 세대에 의한 새 번역!</h1> <br>
 									<br>
 
 									<p>
+									${$book.bookdetail}
 										1997년 영국에서 출간된 이래 『해리 포터』 시리즈는 지금까지 200개국 이상 80개의 언어로 번역되고
 										출간되어 5억 부 이상을 판매했다. 국내에서도 1999년 『해리 포터와 마법사의 돌』의 출간을 필두로 지금까지
 										약 1,500만 부가 판매되었으며, 현재에도 독자들에게 변함없는 사랑을 받고 있다. 이 시리즈는 여덟 편의
@@ -192,6 +211,7 @@ String url="";
 							class="accordion-collapse collapse">
 							<div class="accordion-body">
 								<strong><br>
+								 ${book.profile} 
 									<h2>조앤 K. 롤링</h2> <br>
 
 									<ul>
@@ -234,11 +254,14 @@ String url="";
 				<h2 class="title_text">리뷰</h2>
 
 				<div class="comment-write">
-
+					
 					<div class="comment-form">
-						<textarea id="commentcontent"></textarea>
-						<button id="comment-btn">댓글쓰기</button>
+					<form action="./detail" method="post">
+						<textarea id="commentcontent" name="commentcontent"></textarea>
+						<button id="comment-btn" type="submit">댓글쓰기</button>
+					</form>
 					</div>
+					
 				</div>
 			</div>
 
@@ -247,7 +270,7 @@ String url="";
 	<script>
 		
 	</script>
+
 </body>
 <footer></footer>
-
 </html>
