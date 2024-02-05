@@ -13,7 +13,28 @@ public class BookDTO {
 	private long stock;
 	private String condition;
 	private String filename;
+	private String bcover;
+	private String bindex;
+	private String profile;
 	
+	public String getBcover() {
+		return bcover;
+	}
+	public void setBcover(String bcover) {
+		this.bcover = bcover;
+	}
+	public String getBindex() {
+		return bindex;
+	}
+	public void setBindex(String bindex) {
+		this.bindex = bindex;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getIsbn() {
 		return isbn;
 	}
