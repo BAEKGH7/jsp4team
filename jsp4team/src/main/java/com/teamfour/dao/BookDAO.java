@@ -2,6 +2,8 @@ package com.teamfour.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +43,42 @@ public class BookDAO extends AbstractDAO {
 			System.out.println("DB 저장 성공!");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(null, null, con);
 		}
+	}
+
+	public List<BookDTO> domesticList() {
+		List<BookDTO> list = new ArrayList<BookDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock, condition FROM domesticview";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setCondition(rs.getString("condition"));
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		
+		return list;
 	}
 }
