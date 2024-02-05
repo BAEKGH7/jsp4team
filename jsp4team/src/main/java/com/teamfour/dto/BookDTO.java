@@ -3,6 +3,7 @@ package com.teamfour.dto;
 public class BookDTO {
 	private String isbn, booktitle, author, publisher, publishdate, bookdetail, category, condition, bookcover, bookindex, profile;
 	private int bookprice, totalpage, stock;
+	
 	public String getIsbn() {
 		return isbn;
 	}

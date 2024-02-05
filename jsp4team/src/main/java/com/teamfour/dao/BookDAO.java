@@ -81,4 +81,38 @@ public class BookDAO extends AbstractDAO {
 		
 		return list;
 	}
+	
+	public BookDTO detailBook(String isbn) {
+		BookDTO dto = new BookDTO();
+		
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, bookdetail FROM book WHERE isbn = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, isbn);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setCondition(rs.getString("bookdetail"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		
+		return dto;
+	}
+	
+	
 }
