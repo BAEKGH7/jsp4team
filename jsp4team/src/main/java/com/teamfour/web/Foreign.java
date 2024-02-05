@@ -29,10 +29,10 @@ public class Foreign extends HttpServlet {
 		}
 		
 		BookDAO dao = new BookDAO();
-		List<BookDTO> list = dao.domesticList(page);
-		int totalBooks = dao.totalBooks();
+		List<BookDTO> list = dao.foreignList(page);
+		int totalBooks = dao.forTotalBooks();
 		
-		request.setAttribute("domesticList", list);
+		request.setAttribute("foreignList", list);
 		request.setAttribute("totalBooks", totalBooks);
 		request.setAttribute("page", page);
 		
