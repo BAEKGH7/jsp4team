@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,16 +31,39 @@
 	<main>
 	
 	<section class="blContainer">
+	<!-- 페이징 -->
+	<c:set var="totalPage" value="${totalBooks / 10 }"/>
+	<fmt:parseNumber integerOnly="true" var="totalPage" value="${totalPage }"/>
+	<c:if test="${totalBooks % 10 gt 0 }">
+		<c:set var="totalPage" value="${totalPage + 1 }"/>
+	</c:if>
+	전체 페이지 : <c:out value="${totalPage }"/> <br>
+	<!-- 시작 페이지, 끝 페이지 -->
+	<c:set var="startPage" value="1"/>
+	<!-- 페이지 중간부터 페이징버튼 넘어가도록 -->
+	<c:if test="${page gt 5 }">
+		<c:set var="startPage" value="${page - 5 }"/>
+	</c:if>
+	<c:set var="endPage" value="${startPage + 9 }"/>
+	<!-- 끝페이지가 전체 페이지 넘어서면 -->
+	<c:if test="${endPage gt totalPage }">
+		<c:set var="startpage" value="${totalPage - 10 }"/>
+		<c:set var="endPage" value="${totalPage }"/>
+	</c:if>
+	시작 페이지 : ${startPage } <br>
+	끝 페이지 : ${endPage } <br>
+	현재 페이지 : ${page } <br>
+	<!-- 페이지 버튼 -->
 		<nav aria-label="Page navigation example" class="blItem" id="headerNav">
 		  <ul class="pagination">
 		    <li class="page-item">
-		      <a class="page-link" href="#" aria-label="Previous">
+		      <a class="page-link" href="./domestic?page=1" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="./domestic?page=1">1</a></li>
+		    <li class="page-item"><a class="page-link" href="./domestic?page=2">2</a></li>
+		    <li class="page-item"><a class="page-link" href="./domestic?page=3">3</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="#" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
@@ -50,30 +75,26 @@
 		<table class="table table-hover blItem" id="booklist">
 		  <thead>
 		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">First</th>
-		      <th scope="col">Last</th>
-		      <th scope="col">Handle</th>
+		      <th scope="col">isbn</th>
+		      <th scope="col">제목</th>
+		      <th scope="col">저자</th>
+		      <th scope="col">출판사</th>
 		    </tr>
 		  </thead>
 		  <tbody>
+		  <c:forEach items="${domesticList }" var="book">
 		    <tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>@mdo</td>
+		      <th scope="row">${book.isbn }</th>
+		      <td>
+		      <a href="detail?page=${page }">
+		      <%-- <a href="detail?page=${page }&isbn=${domesticList.isbn }"> --%>
+		      ${book.booktitle }
+		      </a>
+		      </td>
+		      <td>${book.author }</td>
+		      <td>${book.publisher }</td>
 		    </tr>
-		    <tr>
-		      <th scope="row">2</th>
-		      <td>Jacob</td>
-		      <td>Thornton</td>
-		      <td>@fat</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">3</th>
-		      <td colspan="2">Larry the Bird</td>
-		      <td>@twitter</td>
-		    </tr>
+	      </c:forEach>
 		  </tbody>
 		</table>
 	
