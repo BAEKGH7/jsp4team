@@ -1,87 +1,43 @@
 package com.teamfour.dto;
 
 public class BookDTO {
-	private String isbn;
-	private String bName;
-	private Integer bPrice;
-	private String writer;
-	private String company;
-	private String dbate;
-	private Integer totalpage;
-	private String detail;
-	private String category;
-	private long stock;
-	private String condition;
-	private String filename;
-	private String bcover;
-	private String bindex;
-	private String profile;
-	
-	public String getBcover() {
-		return bcover;
-	}
-	public void setBcover(String bcover) {
-		this.bcover = bcover;
-	}
-	public String getBindex() {
-		return bindex;
-	}
-	public void setBindex(String bindex) {
-		this.bindex = bindex;
-	}
-	public String getProfile() {
-		return profile;
-	}
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
+	private String isbn, booktitle, author, publisher, publishdate, bookdetail, category, condition, bookcover, bookindex, profile;
+	private int bookprice, totalpage, stock;
 	public String getIsbn() {
 		return isbn;
 	}
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public String getbName() {
-		return bName;
+	public String getBooktitle() {
+		return booktitle;
 	}
-	public void setbName(String bName) {
-		this.bName = bName;
+	public void setBooktitle(String booktitle) {
+		this.booktitle = booktitle;
 	}
-	public Integer getbPrice() {
-		return bPrice;
+	public String getAuthor() {
+		return author;
 	}
-	public void setbPrice(Integer bPrice) {
-		this.bPrice = bPrice;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
-	public String getWriter() {
-		return writer;
+	public String getPublisher() {
+		return publisher;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
-	public String getCompany() {
-		return company;
+	public String getPublishdate() {
+		return publishdate;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+	public void setPublishdate(String publishdate) {
+		this.publishdate = publishdate;
 	}
-	public String getDbate() {
-		return dbate;
+	public String getBookdetail() {
+		return bookdetail;
 	}
-	public void setDbate(String dbate) {
-		this.dbate = dbate;
-	}
-	public Integer getTotalpage() {
-		return totalpage;
-	}
-	public void setTotalpage(Integer totalpage) {
-		this.totalpage = totalpage;
-	}
-	public String getDetail() {
-		return detail;
-	}
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setBookdetail(String bookdetail) {
+		this.bookdetail = bookdetail;
 	}
 	public String getCategory() {
 		return category;
@@ -89,22 +45,47 @@ public class BookDTO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public long getStock() {
-		return stock;
-	}
-	public void setStock(long stock) {
-		this.stock = stock;
-	}
 	public String getCondition() {
 		return condition;
 	}
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-	public String getFilename() {
-		return filename;
+	public String getBookcover() {
+		return bookcover;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setBookcover(String bookcover) {
+		this.bookcover = bookcover;
 	}
+	public String getBookindex() {
+		return bookindex;
+	}
+	public void setBookindex(String bookindex) {
+		this.bookindex = bookindex;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public int getBookprice() {
+		return bookprice;
+	}
+	public void setBookprice(int bookprice) {
+		this.bookprice = bookprice;
+	}
+	public int getTotalpage() {
+		return totalpage;
+	}
+	public void setTotalpage(int totalpage) {
+		this.totalpage = totalpage;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
 }

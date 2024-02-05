@@ -24,59 +24,16 @@
 </style>
 </head>
 <body>
-<div id="container">
-<!-- header -->
-<header>
-header
-</header>
-<h1>국내도서</h1>
-<nav>
-	<%-- <%@ include file="./menu.jsp" %> --%>
-			<ul class="nav justify-content-center book-nav">
-				<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">국내도서</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">해외도서</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">신간</a></li>
-				<li class="nav-item"><a class="nav-link disabled" aria-disabled="true">ebook</a></li>
-			</ul>
-</nav>
-<div id="all-box">
-<!-- aside -->
-<aside class="sidebar">
-aside
-</aside>
-<!-- main -->
-<main class="wrap">
-	<div class="mainStyle">
-		<article>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">제목</th>
-						<th scope="col">저자</th>
-						<th scope="col">날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="eachrow">
-						<th scope="row">1</th>
-						<td>파견자들</td>
-						<td>김초엽</td>
-						<td>2024-01-30</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		<section>
-		section
-		</section>
-	</div>
-</main>
-<!-- footer -->
-<footer>
-footer
-</footer>
-</div>
-</div>
+
+	<header>header</header>
+	<main>
+	<section class="container1">
+	
+	</section>
+	
+	</main>
+	<aside>side</aside>
+	<footer>footer</footer>
+
 </body>
 </html>

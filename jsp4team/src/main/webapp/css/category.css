@@ -5,7 +5,7 @@ body {
 	height: 100vh;
 	margin: 0;
 	display: grid;
-	grid-template-columns: 200px 3fr;
+	grid-template-columns: minmax(220px, 1fr) 5fr;
 	grid-template-rows: 100px auto 50px;
 	grid-template-areas: 
 	'header header'
@@ -15,18 +15,38 @@ body {
 
 header {
 	grid-area: header;
-	background-color: orange;
+	background-color: #ffb703;
+	display: flex;
+}
+.bhItem {
+	justify-content: center;
 }
 main {
 	grid-area: main;
 }
 aside {
 	grid-area: side;
+	background-color: #fb8500;
 }
 footer {
 	grid-area: footer;
+	background-color: #023047;
 }
 
+.blContainer {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.blItem {
+	
+}
+#headerNav{
+	
+}
+#booklist{
+	
+}
 .colorA {
 	background-color: #cdb4db;
 }

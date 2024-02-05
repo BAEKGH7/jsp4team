@@ -121,3 +121,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,eclipse
+<<<<<<< HEAD
+/.classpath
+=======
+/.classpath
+>>>>>>> branch 'develop' of https://github.com/SoLeafy/jsp4teamver3.git
