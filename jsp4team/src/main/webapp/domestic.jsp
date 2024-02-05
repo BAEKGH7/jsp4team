@@ -57,15 +57,32 @@
 		<nav aria-label="Page navigation example" class="blItem" id="headerNav">
 		  <ul class="pagination">
 		    <li class="page-item">
-		      <a class="page-link" href="./domestic?page=1" aria-label="Previous">
+		      <a class="page-link" 
+		      <c:choose>
+		      <c:when test="${page - 10 lt 1 }">href="./domestic?page=1"</c:when>
+		      <c:otherwise>href="./domestic?page=${page - 10}"</c:otherwise>
+		      </c:choose>
+		       aria-label="Previous" 
+		      	<c:if test="${page - 10 lt 1 }">disabled="disabled"</c:if>
+		      	>
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <li class="page-item"><a class="page-link" href="./domestic?page=1">1</a></li>
-		    <li class="page-item"><a class="page-link" href="./domestic?page=2">2</a></li>
-		    <li class="page-item"><a class="page-link" href="./domestic?page=3">3</a></li>
+		    <c:forEach begin="${startPage }" end="${endPage }" var="p">
 		    <li class="page-item">
-		      <a class="page-link" href="#" aria-label="Next">
+		    <a 
+		    <c:if test="${page eq p }">id="currentBtn"</c:if> 
+		    class="page-link" href="./domestic?page=${p }">${p }</a></li>
+		    <!-- <li class="page-item"><a class="page-link" href="./domestic?page=2">2</a></li>
+		    <li class="page-item"><a class="page-link" href="./domestic?page=3">3</a></li> -->
+		    </c:forEach>
+		    <li class="page-item">
+		      <a class="page-link" 
+				<c:choose>
+		        <c:when test="${page + 10 gt totalPage }">href="./domestic?page=${totalPage }"</c:when>
+		        <c:otherwise>href="./domestic?page=${page + 10}"</c:otherwise>
+		        </c:choose>
+				aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
