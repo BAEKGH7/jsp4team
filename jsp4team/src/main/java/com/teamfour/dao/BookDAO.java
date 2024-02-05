@@ -69,8 +69,11 @@ public class BookDAO extends AbstractDAO {
 				dto.setBookcover(rs.getString("bookcover"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setTotalpage(rs.getInt("totalpage"));
-				dto.setIsbn(rs.getString("isbn"));
+				dto.setTotalpage(rs.getInt("publishdate"));
+				dto.setIsbn(rs.getString("bookdetail"));
+				dto.setIsbn(rs.getString("profile"));
+				dto.setIsbn(rs.getString("bookindex"));
+				dto.setIsbn(rs.getString("bookprice"));
 
 			}
 
