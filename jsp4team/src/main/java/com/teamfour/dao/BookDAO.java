@@ -50,32 +50,39 @@ public class BookDAO extends AbstractDAO {
 		}
 	}
 	
-	public BookDTO detail(int isbn) {
+	public BookDTO detail(String isbn) {
 		BookDTO dto = new BookDTO();
 
 		Connection con = DBConnection.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT bookcover, author, publisher, totalpage, isbn, "
-				+ "bookdetail, bookindex, profile FROM book WHERE isbn=?";
+		String sql = "SELECT bookcover, booktitle, author, publisher, publishdate, isbn, "
+				+ "bookdetail, bookindex, profile, bookprice FROM book WHERE isbn=?";
 
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "isbn");
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				dto.setBookcover(rs.getString("bookcover"));
+				dto.setBooktitle(rs.getString("booktitle"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setTotalpage(rs.getInt("totalpage"));
-				dto.setIsbn(rs.getString("isbn"));
+				dto.setPublishdate(rs.getString("publishdate"));
+				dto.setBookdetail(rs.getString("bookdetail"));
+				dto.setBookindex(rs.getString("bookindex"));
+				dto.setProfile(rs.getString("profile"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setIsbn(isbn);
 
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
 		}
 
 		return dto;
@@ -89,6 +96,40 @@ public class BookDAO extends AbstractDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock FROM domesticview LIMIT ?, 10";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (page-1) * 10);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setStock(rs.getInt("stock"));
+				//dto.setCondition(rs.getString("bookcondition"));
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		
+		return list;
+	}
+	
+	public List<BookDTO> foreignList(int page) {
+		List<BookDTO> list = new ArrayList<BookDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock FROM foreignview LIMIT ?, 10";
 		
 		try {
 			pstmt = con.prepareStatement(sql);

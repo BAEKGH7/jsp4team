@@ -1,6 +1,5 @@
 package com.teamfour.web;
 
-import java.io.Console;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.teamfour.dao.BookDAO;
 import com.teamfour.dto.BookDTO;
-import com.teamfour.util.Util;
 
 @WebServlet("/detail")
 public class Detail extends HttpServlet {
@@ -27,8 +25,8 @@ public class Detail extends HttpServlet {
 		BookDAO dao = new BookDAO();
 		BookDTO dto = dao.detailBook(request.getParameter("isbn"));
 		
-		int isbn = Util.str2Int(request.getParameter("isbn"));
-		
+		request.setAttribute("isbn", request.getParameter("isbn"));
+		request.setAttribute("book", dto);
 		
 		System.out.println(dto.getTotalpage());
 		System.out.println(dto.getBooktitle());
