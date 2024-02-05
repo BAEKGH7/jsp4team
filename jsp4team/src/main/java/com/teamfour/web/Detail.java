@@ -1,6 +1,5 @@
 package com.teamfour.web;
 
-import java.io.Console;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.teamfour.util.Util;
+import com.teamfour.dao.BookDAO;
+import com.teamfour.dto.BookDTO;
 
 
 @WebServlet("/detail")
@@ -23,8 +23,11 @@ public class Detail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int isbn = Util.str2Int(request.getParameter("isbn"));
+		BookDAO dao = new BookDAO();
+		BookDTO dto = dao.detail(request.getParameter("isbn"));
 		
+		request.setAttribute("isbn", request.getParameter("isbn"));
+		request.setAttribute("book", dto);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./detail.jsp");
 		rd.forward(request, response);

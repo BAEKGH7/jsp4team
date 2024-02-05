@@ -50,35 +50,39 @@ public class BookDAO extends AbstractDAO {
 		}
 	}
 	
-	public BookDTO detail(int isbn) {
+	public BookDTO detail(String isbn) {
 		BookDTO dto = new BookDTO();
 
 		Connection con = DBConnection.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT bookcover, author, publisher, totalpage, isbn, "
-				+ "bookdetail, bookindex, profile FROM book WHERE isbn=?";
+		String sql = "SELECT bookcover, booktitle, author, publisher, publishdate, isbn, "
+				+ "bookdetail, bookindex, profile, bookprice FROM book WHERE isbn=?";
 
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "isbn");
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				dto.setBookcover(rs.getString("bookcover"));
+				dto.setBooktitle(rs.getString("booktitle"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setTotalpage(rs.getInt("publishdate"));
-				dto.setIsbn(rs.getString("bookdetail"));
-				dto.setIsbn(rs.getString("profile"));
-				dto.setIsbn(rs.getString("bookindex"));
-				dto.setIsbn(rs.getString("bookprice"));
+				dto.setPublishdate(rs.getString("publishdate"));
+				dto.setBookdetail(rs.getString("bookdetail"));
+				dto.setBookindex(rs.getString("bookindex"));
+				dto.setProfile(rs.getString("profile"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setIsbn(isbn);
 
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
 		}
 
 		return dto;
