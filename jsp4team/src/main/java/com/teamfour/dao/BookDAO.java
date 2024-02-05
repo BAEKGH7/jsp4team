@@ -49,15 +49,16 @@ public class BookDAO extends AbstractDAO {
 		}
 	}
 
-	public List<BookDTO> domesticList() {
+	public List<BookDTO> domesticList(int page) {
 		List<BookDTO> list = new ArrayList<BookDTO>();
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock, condition FROM domesticview";
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock, bookcondition FROM domesticview LIMIT ?, 10";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (page-1) * 10);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -68,7 +69,7 @@ public class BookDAO extends AbstractDAO {
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
 				dto.setStock(rs.getInt("stock"));
-				dto.setCondition(rs.getString("condition"));
+				dto.setCondition(rs.getString("bookcondition"));
 				list.add(dto);
 			}
 			
@@ -80,5 +81,28 @@ public class BookDAO extends AbstractDAO {
 		
 		
 		return list;
+	}
+
+	public int totalBooks() {
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT count(*) FROM domesticview";
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		return result;
 	}
 }
