@@ -56,8 +56,8 @@ public class BookDAO extends AbstractDAO {
 		Connection con = DBConnection.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT bcover, author, publisher, totalpage, isbn, "
-				+ "detail, bindex, profile FROM book WHERE isbn=?";
+		String sql = "SELECT bookcover, author, publisher, totalpage, isbn, "
+				+ "detail, bookindex, profile FROM book WHERE isbn=?";
 
 		
 		try {
@@ -66,9 +66,9 @@ public class BookDAO extends AbstractDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				dto.setBcover(rs.getString("bcover"));
-				dto.setWriter(rs.getString("author"));
-				dto.setCompany(rs.getString("publisher"));
+				dto.setBookcover(rs.getString("bookcover"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
 				dto.setTotalpage(rs.getInt("totalpage"));
 				dto.setIsbn(rs.getString("isbn"));
 
