@@ -113,6 +113,7 @@
 							<div class="accordion-body">
 								<strong><br>
 									<p>
+									${$book.bookdetail}
 									${book.bookdetail}
 									</p> </strong>
 							</div>
