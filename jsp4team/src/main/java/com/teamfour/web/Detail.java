@@ -1,5 +1,6 @@
 package com.teamfour.web;
 
+import java.io.Console;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.teamfour.dao.BookDAO;
 import com.teamfour.dto.BookDTO;
+import com.teamfour.util.Util;
 
 @WebServlet("/detail")
 public class Detail extends HttpServlet {
@@ -19,12 +21,13 @@ public class Detail extends HttpServlet {
 	public Detail() {
 		super();
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println(request.getParameter("isbn"));
 		BookDAO dao = new BookDAO();
 		BookDTO dto = dao.detailBook(request.getParameter("isbn"));
+		
+		int isbn = Util.str2Int(request.getParameter("isbn"));
 		
 		
 		System.out.println(dto.getTotalpage());
