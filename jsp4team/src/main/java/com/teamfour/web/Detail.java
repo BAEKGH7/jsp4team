@@ -21,18 +21,11 @@ public class Detail extends HttpServlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getParameter("isbn"));
+		//System.out.println(request.getParameter("isbn"));
 		BookDAO dao = new BookDAO();
-		BookDTO dto = dao.detailBook(request.getParameter("isbn"));
+		BookDTO dto = dao.detail(request.getParameter("isbn"));
 		
 		request.setAttribute("isbn", request.getParameter("isbn"));
-		request.setAttribute("book", dto);
-		
-		System.out.println(dto.getTotalpage());
-		System.out.println(dto.getBooktitle());
-		System.out.println(dto.getAuthor());
-		System.out.println(dto.getIsbn());
-		System.out.println(dto.getBookprice());
 		request.setAttribute("book", dto);
 		
 		// 리퀘스트디스패쳐 호출하기
