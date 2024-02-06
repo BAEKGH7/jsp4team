@@ -22,10 +22,10 @@
 
 	<header>
 		<nav class="nav bhItem">
-		  <a class="nav-link active" aria-current="page" href="#">Active</a>
-		  <a class="nav-link" href="#">Link</a>
-		  <a class="nav-link" href="#">Link</a>
-		  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+		  <a class="nav-link" href="./">메인화면</a>
+		  <a class="nav-link" href="./domestic">국내</a>
+		  <a class="nav-link active" aria-current="page" href="./foreign">해외</a>
+		  <a class="nav-link disabled" aria-disabled="true">신작</a>
 		</nav>
 	</header>
 	<main>
@@ -37,7 +37,7 @@
 	<c:if test="${totalBooks % 10 gt 0 }">
 		<c:set var="totalPage" value="${totalPage + 1 }"/>
 	</c:if>
-	전체 페이지 : <c:out value="${totalPage }"/> <br>
+	<%-- 전체 페이지 : <c:out value="${totalPage }"/> <br> --%>
 	<!-- 시작 페이지, 끝 페이지 -->
 	<c:set var="startPage" value="1"/>
 	<!-- 페이지 중간부터 페이징버튼 넘어가도록 -->
@@ -50,17 +50,17 @@
 		<c:set var="startpage" value="${totalPage - 10 }"/>
 		<c:set var="endPage" value="${totalPage }"/>
 	</c:if>
-	시작 페이지 : ${startPage } <br>
+	<%-- 시작 페이지 : ${startPage } <br>
 	끝 페이지 : ${endPage } <br>
-	현재 페이지 : ${page } <br>
+	현재 페이지 : ${page } <br> --%>
 	<!-- 페이지 버튼 -->
 		<nav aria-label="Page navigation example" class="blItem" id="headerNav">
 		  <ul class="pagination">
 		    <li class="page-item">
 		      <a class="page-link" 
 		      <c:choose>
-		      <c:when test="${page - 10 lt 1 }">href="./domestic?page=1"</c:when>
-		      <c:otherwise>href="./domestic?page=${page - 10}"</c:otherwise>
+		      <c:when test="${page - 10 lt 1 }">href="./foreign?page=1"</c:when>
+		      <c:otherwise>href="./foreign?page=${page - 10}"</c:otherwise>
 		      </c:choose>
 		       aria-label="Previous" 
 		      	<c:if test="${page - 10 lt 1 }">disabled="disabled"</c:if>
@@ -72,15 +72,13 @@
 		    <li class="page-item">
 		    <a 
 		    <c:if test="${page eq p }">id="currentBtn"</c:if> 
-		    class="page-link" href="./domestic?page=${p }">${p }</a></li>
-		    <!-- <li class="page-item"><a class="page-link" href="./domestic?page=2">2</a></li>
-		    <li class="page-item"><a class="page-link" href="./domestic?page=3">3</a></li> -->
+		    class="page-link" href="./foreign?page=${p }">${p }</a></li>
 		    </c:forEach>
 		    <li class="page-item">
 		      <a class="page-link" 
 				<c:choose>
-		        <c:when test="${page + 10 gt totalPage }">href="./domestic?page=${totalPage }"</c:when>
-		        <c:otherwise>href="./domestic?page=${page + 10}"</c:otherwise>
+		        <c:when test="${page + 10 gt totalPage }">href="./foreign?page=${totalPage }"</c:when>
+		        <c:otherwise>href="./foreign?page=${page + 10}"</c:otherwise>
 		        </c:choose>
 				aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
@@ -92,23 +90,25 @@
 		<table class="table table-hover blItem" id="booklist">
 		  <thead>
 		    <tr>
-		      <th scope="col">isbn</th>
-		      <th scope="col">제목</th>
-		      <th scope="col">저자</th>
-		      <th scope="col">출판사</th>
+		      <th scope="col"><center>표지</center></th>
+		      <th scope="col"><center>제목</center></th>
+		      <th scope="col"><center>저자</center></th>
+		      <th scope="col"><center>출판사</center></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		  <c:forEach items="${domesticList }" var="book">
+		  <c:forEach items="${foreignList }" var="book">
 		    <tr>
-		      <th scope="row">${book.isbn }</th>
-		      <td>
+		      <th align="center" valign="middle" class="coverth" scope="row">
+		      <img class="bookcover" alt="책표지" src="${book.bookcover }" onclick="location.href='./detail?page=${page }&isbn=${book.isbn }'">
+		      </th>
+		      <td valign="middle" class="titletd">
 		      <a href="detail?page=${page }&isbn=${book.isbn }">
 		      ${book.booktitle }
 		      </a>
 		      </td>
-		      <td>${book.author }</td>
-		      <td>${book.publisher }</td>
+		      <td valign="middle" class="authortd">${book.author }</td>
+		      <td valign="middle" class="publishertd">${book.publisher }</td>
 		    </tr>
 	      </c:forEach>
 		  </tbody>
@@ -117,15 +117,15 @@
 	</section>
 	
 	</main>
-	<aside>
+	<!-- <aside>
 		<nav class="nav flex-column">
 		  <a class="nav-link active" aria-current="page" href="#">Active</a>
 		  <a class="nav-link" href="#">Link</a>
 		  <a class="nav-link" href="#">Link</a>
 		  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 		</nav>
-	</aside>
-	<footer>footer</footer>
+	</aside> -->
+	<!-- <footer>footer</footer> -->
 
 
 </body>

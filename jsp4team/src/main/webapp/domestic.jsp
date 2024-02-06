@@ -22,10 +22,10 @@
 
 	<header>
 		<nav class="nav bhItem">
-		  <a class="nav-link active" aria-current="page" href="#">Active</a>
-		  <a class="nav-link" href="#">Link</a>
-		  <a class="nav-link" href="#">Link</a>
-		  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+		  <a class="nav-link" href="./">메인화면</a>
+		  <a class="nav-link active" aria-current="page" href="./domestic">국내</a>
+		  <a class="nav-link" href="./foreign">해외</a>
+		  <a class="nav-link disabled" aria-disabled="true">신작</a>
 		</nav>
 	</header>
 	<main>
@@ -37,7 +37,7 @@
 	<c:if test="${totalBooks % 10 gt 0 }">
 		<c:set var="totalPage" value="${totalPage + 1 }"/>
 	</c:if>
-	전체 페이지 : <c:out value="${totalPage }"/> <br>
+	<%-- 전체 페이지 : <c:out value="${totalPage }"/> <br> --%>
 	<!-- 시작 페이지, 끝 페이지 -->
 	<c:set var="startPage" value="1"/>
 	<!-- 페이지 중간부터 페이징버튼 넘어가도록 -->
@@ -50,10 +50,11 @@
 		<c:set var="startpage" value="${totalPage - 10 }"/>
 		<c:set var="endPage" value="${totalPage }"/>
 	</c:if>
-	시작 페이지 : ${startPage } <br>
+	<%-- 시작 페이지 : ${startPage } <br>
 	끝 페이지 : ${endPage } <br>
-	현재 페이지 : ${page } <br>
+	현재 페이지 : ${page } <br> --%>
 	<!-- 페이지 버튼 -->
+	<div class="pagingDiv">
 		<nav aria-label="Page navigation example" class="blItem" id="headerNav">
 		  <ul class="pagination">
 		    <li class="page-item">
@@ -88,27 +89,29 @@
 		    </li>
 		  </ul>
 		</nav>
-		
+	</div>
 		<table class="table table-hover blItem" id="booklist">
 		  <thead>
 		    <tr>
-		      <th scope="col">isbn</th>
-		      <th scope="col">제목</th>
-		      <th scope="col">저자</th>
-		      <th scope="col">출판사</th>
+		      <th scope="col"><center>표지</center></th>
+		      <th scope="col"><center>제목</center></th>
+		      <th scope="col"><center>저자</center></th>
+		      <th scope="col"><center>출판사</center></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  <c:forEach items="${domesticList }" var="book">
 		    <tr>
-		      <th scope="row">${book.isbn }</th>
-		      <td>
+		      <th align="center" valign="middle" class="coverth" scope="row">
+		      <img class="bookcover" alt="책표지" src="${book.bookcover }" onclick="location.href='./detail?page=${page }&isbn=${book.isbn }'">
+		      </th>
+		      <td valign="middle" class="titletd">
 		      <a href="detail?page=${page }&isbn=${book.isbn }">
 		      ${book.booktitle }
 		      </a>
 		      </td>
-		      <td>${book.author }</td>
-		      <td>${book.publisher }</td>
+		      <td valign="middle" class="authortd">${book.author }</td>
+		      <td valign="middle" class="publishertd">${book.publisher }</td>
 		    </tr>
 	      </c:forEach>
 		  </tbody>
@@ -117,15 +120,15 @@
 	</section>
 	
 	</main>
-	<aside>
+	<!-- <aside>
 		<nav class="nav flex-column">
 		  <a class="nav-link active" aria-current="page" href="#">Active</a>
 		  <a class="nav-link" href="#">Link</a>
 		  <a class="nav-link" href="#">Link</a>
 		  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 		</nav>
-	</aside>
-	<footer>footer</footer>
+	</aside> -->
+	<!-- <footer>footer</footer> -->
 
 
 </body>

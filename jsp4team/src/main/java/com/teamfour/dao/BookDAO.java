@@ -95,7 +95,7 @@ public class BookDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock FROM domesticview LIMIT ?, 10";
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, publishdate, bookcover FROM domesticview LIMIT ?, 10";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -109,8 +109,9 @@ public class BookDAO extends AbstractDAO {
 				dto.setBookprice(rs.getInt("bookprice"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setStock(rs.getInt("stock"));
-				//dto.setCondition(rs.getString("bookcondition"));
+				//dto.setStock(rs.getInt("stock"));
+				dto.setPublishdate(rs.getString("publishdate"));
+				dto.setBookcover(rs.getString("bookcover"));
 				list.add(dto);
 			}
 			
@@ -129,7 +130,7 @@ public class BookDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, stock FROM foreignview LIMIT ?, 10";
+		String sql = "SELECT isbn, booktitle, bookprice, author, publisher, publishdate, bookcover FROM foreignview LIMIT ?, 10";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -143,8 +144,9 @@ public class BookDAO extends AbstractDAO {
 				dto.setBookprice(rs.getInt("bookprice"));
 				dto.setAuthor(rs.getString("author"));
 				dto.setPublisher(rs.getString("publisher"));
-				dto.setStock(rs.getInt("stock"));
-				//dto.setCondition(rs.getString("bookcondition"));
+				//dto.setStock(rs.getInt("stock"));
+				dto.setPublishdate(rs.getString("publishdate"));
+				dto.setBookcover(rs.getString("bookcover"));
 				list.add(dto);
 			}
 			
@@ -162,12 +164,12 @@ public class BookDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT count(*) FROM ?";
+		String sql = "SELECT count(*) FROM " + viewname;
 		int result = 0;
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, viewname);
+			//pstmt.setString(1, viewname);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

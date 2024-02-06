@@ -2,34 +2,29 @@
 
 body {
 	width: 100vw;
-	height: 100vh;
-	margin: 0;
-	display: grid;
-	grid-template-columns: minmax(220px, 1fr) 5fr;
-	grid-template-rows: 100px auto 50px;
-	grid-template-areas: 
-	'header header'
-	'side main'
-	'footer footer';
+	/* height: 100vh; */
+	height: auto;
 }
 
 header {
-	grid-area: header;
-	background-color: #ffb703;
+	width: 100%;
+	height: 80px;
+	background-color: #fb8500;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .bhItem {
-	justify-content: center;
+	/* justify-content: center; */
+	float: left;
 }
 main {
-	grid-area: main;
+	
 }
-aside {
-	grid-area: side;
-	background-color: #fb8500;
-}
+/* aside {
+	background-color: #ffb703;
+} */
 footer {
-	grid-area: footer;
 	background-color: #023047;
 }
 
@@ -37,16 +32,47 @@ footer {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	align-items: center;
 }
 .blItem {
-	
+	margin: 20px;
 }
 #headerNav{
 	
 }
 #booklist{
-	
+	width: 1200px;
 }
+.bookcover {
+	width: 80%;
+	height: 80%;
+	text-align: center;
+}
+.bookcover:hover {
+	cursor: pointer;
+}
+
+.coverth {
+	width: 100px;
+	text-align: center;
+}
+.titletd {
+	width: 400px;
+}
+.authortd {
+	width: 200px;
+}
+.publishertd {
+	width: 100px;
+}
+tr {
+}
+th {
+	text-align: center;
+}
+td {
+}
+
 .colorA {
 	background-color: #cdb4db;
 }
