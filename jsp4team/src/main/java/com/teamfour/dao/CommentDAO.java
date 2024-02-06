@@ -16,14 +16,16 @@ public class CommentDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "INSERT INTO comment (ccomment, BookID, mno, cip) "
-				+ "VALUES (?, ?, (SELECT mno FROM member WHERE mid=?), ?)";
+		String sql = "INSERT INTO comment (comment, isbn, mno, ip, mid, mname) "
+				+ "VALUES (?, ?, (SELECT mno FROM member WHERE mid=?), ?, ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getComment());
-			pstmt.setString(2, dto.getBookId());
+			pstmt.setString(2, dto.getIsbn());
 			pstmt.setString(3, dto.getMid());
 			pstmt.setString(4, dto.getIp());
+			pstmt.setString(5, dto.getMid());
+			pstmt.setString(6, dto.getMname());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,28 +76,26 @@ public class CommentDAO extends AbstractDAO {
 		return result;
 	}
 
-	public List<CommentDTO> commentList(int no) {
+	public List<CommentDTO> commentList(String isbn) {
 		List<CommentDTO> list = new ArrayList<CommentDTO>();
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM commentview WHERE isbn=?";
+		String sql = "SELECT cno, comment, cdate, mname, ip, mid FROM comment WHERE isbn=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, no);
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				CommentDTO dto = new CommentDTO();
 				dto.setCno(rs.getInt("cno"));
-				dto.setBookId(rs.getString("bookId"));
 				dto.setComment(rs.getString("comment"));
 				dto.setCdate(rs.getString("cdate"));
-				dto.setMno(rs.getInt("mno"));
-				dto.setMid(rs.getString("mid"));
 				dto.setMname(rs.getString("mname"));
-				dto.setIp(Util.ipMasking(rs.getString("cip")));
+				dto.setIp(Util.ipMasking(rs.getString("ip")));
+				dto.setMid(rs.getString("mid"));
 				list.add(dto);
 			}
 
