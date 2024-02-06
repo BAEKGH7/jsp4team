@@ -23,31 +23,41 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 여기에 스크립트 코드 삽입 -->
 <script type="text/javascript">
-	$("#comment-btn").click(function() {
-		let content = $("#commentcontent").val();
-		console.log(content);
-		/* let cno = ${detail.no};
-		if (content.length < 5) {
-			alert("댓글은 다섯글자 이상으로 적어주세요.");
-			$("#commentcontent").focus();
-		} else {
-			let form = $('<form></form>');
-			form.attr('name', 'form');
-			form.attr('method', 'post');
-			form.attr('action', './detail');
-			form.append($('<input/>', {
-				type : 'hidden',
-				name : 'commentcontent',
-				value : content
-			}));//json
-			form.append($('<input/>', {
-				type : 'hidden',
-				name : 'cno',
-				value : cno
-			}));
-			form.appendTo("body");
-			form.submit();
-		} */
+	$(document).ready(function() {
+		$("#comment-btn").click(function() {
+			let content = $("#commentcontent").val();
+			let isbn = $
+			{
+				detail.isbn
+			}
+			;
+
+			if (commentcontent.length < 5) {
+				alert("댓글은 다섯글자 이상으로 적어주세요.");
+				$("#commentcontent").focus();
+			} else {
+				let form = $('<form></form>');
+				form.attr('name', 'form');
+				form.attr('method', 'post');
+				form.attr('action', './comment');
+
+				form.append($('<input/>', {
+					type : 'hidden',
+					name : 'commentcontent',
+					value : content
+				}));
+				form.append($('<input/>', {
+					type : 'hidden',
+					name : 'isbn',
+					value : isbn
+				}));
+
+				form.appendTo("body");
+				form.submit();
+			}
+			// getList 함수를 여기로 이동
+			getList();
+		});
 	});
 </script>
 
@@ -71,22 +81,20 @@
 			<div class="contents">
 
 				<div class="card" style="width: 100%; margin: auto;">
-					<img
-						src="${book.bookcover}"
-						class="card-img-top" alt="bookcover"> 
-<%-- 					<img
+					<img src="${book.bookcover}" class="card-img-top" alt="bookcover">
+					<%-- 					<img
 						src="https://th.bing.com/th/id/R.6bd1767fcd505755a61ae6665a48895d?rik=En3i4Ub2INbYBw&riu=http%3a%2f%2fmoonhak.co.kr%2fhome%2fwp-content%2fuploads%2fbookcover%2f%ED%95%B4%EB%A6%AC%ED%8F%AC%ED%84%B01%ED%83%84_72.jpg&ehk=u4qeiFZTu2A%2bWeN0qPLivscWeGztLPzS8OyRd%2b75tKE%3d&risl=&pid=ImgRaw&r=0"
 						class="card-img-top" alt="bookcover"> ${book.bookcover} --%>
 					<div class="card-body">
-						<h5 class="card-title"> ${book.booktitle }</h5>
+						<h5 class="card-title">${book.booktitle }</h5>
 						<br>
-						<div class="card" style="width: 800px;">
-							<ul class="list-group list-group-flush">
+						<div class="card" style="width: 860px; margin: center;">
+							<ul class="list-group">
 								<li class="list-group-item">${book.author }</li>
 								<li class="list-group-item">출판사 : ${book.publisher }</li>
-								<li class="list-group-item">출판 날짜: ${book.publishdate }</li>			
-								<li class="list-group-item">ISBN : ${book.isbn} </li>
-								<li class="list-group-item">정가 : ${book.bookprice} 원 </li>
+								<li class="list-group-item">출판 날짜: ${book.publishdate }</li>
+								<li class="list-group-item">ISBN : ${book.isbn}</li>
+								<li class="list-group-item">정가 : ${book.bookprice} 원</li>
 							</ul>
 						</div>
 						<br>
@@ -110,13 +118,7 @@
 						</h2>
 						<div id="panelsStayOpen-collapseOne"
 							class="accordion-collapse collapse show">
-							<div class="accordion-body">
-								<strong><br>
-									<p>
-									${$book.bookdetail}
-									${book.bookdetail}
-									</p> </strong>
-							</div>
+							<div class="accordion-body">${book.bookdetail}</div>
 						</div>
 					</div>
 					<div class="accordion-item">
@@ -130,9 +132,7 @@
 						<div id="panelsStayOpen-collapseTwo"
 							class="accordion-collapse collapse">
 							<div class="accordion-body">
-								<strong>
-									 ${book.bookindex} 
-								</strong>
+								<strong> ${book.bookindex} </strong>
 							</div>
 						</div>
 					</div>
@@ -146,10 +146,8 @@
 						</h2>
 						<div id="panelsStayOpen-collapseThree"
 							class="accordion-collapse collapse">
-							<div class="accordion-body">
-								<strong>
-								 ${book.profile} 
-								</strong>
+							<div class="accordion-body" style="font-weight: lighter;">
+								<strong> ${book.bookdetail} </strong>
 							</div>
 						</div>
 					</div>
@@ -161,25 +159,21 @@
 				<div id="replyList"></div>
 
 				<h2 class="title_text">리뷰</h2>
-
 				<div class="comment-write">
-					
 					<div class="comment-form">
-					<form action="./detail" method="post">
-						<textarea id="commentcontent" name="commentcontent"></textarea>
-						<button id="comment-btn" type="submit">댓글쓰기</button>
-					</form>
+						<form method="post" action="./comment">
+							<textarea id="commentcontent" name="commentcontent"></textarea>
+							<button id="comment-btn" type="submit">댓글쓰기</button>
+						</form>
 					</div>
-					
 				</div>
 			</div>
-
 		</div>
 	</div>
+
 	<script>
 		
 	</script>
-
 </body>
 <footer></footer>
 </html>

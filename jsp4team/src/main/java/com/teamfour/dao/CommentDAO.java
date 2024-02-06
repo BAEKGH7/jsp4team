@@ -16,12 +16,12 @@ public class CommentDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "INSERT INTO comment (ccomment, BookID, mno, cip) "
-				+ "VALUES (?, ?, (SELECT mno FROM member WHERE mid=?), ?)";
+		String sql = "INSERT INTO comment (ccomment, mid, mname, ip, cdate) "
+				+ "VALUES (?, ?, (SELECT mno FROM member WHERE isbn=?), ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getComment());
-			pstmt.setString(2, dto.getBookId());
+			pstmt.setString(2, dto.getIsbn());
 			pstmt.setString(3, dto.getMid());
 			pstmt.setString(4, dto.getIp());
 			result = pstmt.executeUpdate();
@@ -89,7 +89,7 @@ public class CommentDAO extends AbstractDAO {
 			while (rs.next()) {
 				CommentDTO dto = new CommentDTO();
 				dto.setCno(rs.getInt("cno"));
-				dto.setBookId(rs.getString("bookId"));
+				dto.setIsbn((rs.getString("ibsn")));
 				dto.setComment(rs.getString("comment"));
 				dto.setCdate(rs.getString("cdate"));
 				dto.setMno(rs.getInt("mno"));
