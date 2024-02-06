@@ -31,11 +31,11 @@ public class Comment extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");// 한글처리
 		HttpSession session = request.getSession();
 
-		if (request.getParameter("commentcontent") != null && Util.intCheck(request.getParameter("isbn"))
+		if (request.getParameter("commentcontent") != null 
 				&& session.getAttribute("mid") != null) {
 			// 오는 값 받기
 			String commentcontent = request.getParameter("commentcontent");// 댓글내용
-
+			
 			// HTML에서 태그를 특수기호로 변경하기
 			commentcontent = Util.removeTag(commentcontent);
 
@@ -49,15 +49,16 @@ public class Comment extends HttpServlet {
 			CommentDTO dto = new CommentDTO();
 			dto.setComment(commentcontent);
 			dto.setIsbn(isbn);
-			dto.setMid((String) session.getAttribute("mid"));
+			dto.setMid((String)session.getAttribute("mid"));
 			dto.setIp(Util.getIP(request));
+			dto.setMname((String)session.getAttribute("mname"));
 
 			CommentDAO dao = new CommentDAO();
 			int result = dao.commentWrite(dto);
-			// System.out.println("처리결과 : " + result);
+			System.out.println("처리결과 : " + result);
 			// 이동해주세요.
 			if (result == 1) {
-				response.sendRedirect("./detail?ibsn=" + isbn);
+				response.sendRedirect("./detail?isbn=" + isbn);
 			} else {
 				response.sendRedirect("./error.jsp");
 			}

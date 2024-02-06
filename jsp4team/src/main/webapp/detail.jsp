@@ -26,11 +26,9 @@
 	$(document).ready(function() {
 		$("#comment-btn").click(function() {
 			let content = $("#commentcontent").val();
-			let isbn = $
-			{
-				detail.isbn
-			}
-			;
+			//let isbn = ${book.isbn};
+			let isbn = ${param.isbn};
+			
 
 			if (commentcontent.length < 5) {
 				alert("댓글은 다섯글자 이상으로 적어주세요.");
@@ -42,8 +40,8 @@
 				form.attr('action', './comment');
 
 				form.append($('<input/>', {
-					type : 'hidden',
-					name : 'commentcontent',
+					type : 'hidden', 
+					name : 'commentcontent', 
 					value : content
 				}));
 				form.append($('<input/>', {
@@ -52,11 +50,11 @@
 					value : isbn
 				}));
 
-				form.appendTo("body");
+				form.appendTo('body');
 				form.submit();
 			}
 			// getList 함수를 여기로 이동
-			getList();
+			//getList();
 		});
 	});
 </script>
@@ -159,14 +157,38 @@
 				<div id="replyList"></div>
 
 				<h2 class="title_text">리뷰</h2>
+				<c:if test="${sessionScope.mid ne null }">
 				<div class="comment-write">
 					<div class="comment-form">
 						<form method="post" action="./comment">
 							<textarea id="commentcontent" name="commentcontent"></textarea>
+							<input type="hidden" value="${param.isbn }" name="isbn"/>
 							<button id="comment-btn" type="submit">댓글쓰기</button>
 						</form>
 					</div>
 				</div>
+				</c:if>
+				<!-- 댓글 출력창 -->
+					<div class="comments">
+						<c:forEach items="${commentList }" var="co">
+							<div class="comment">
+								<div class="chead">
+									<div class="cname">${co.mname }님 
+										<c:if test="${co.mid eq sessionScope.mid }">
+											<input type="hidden" class="cno" value="${co.cno }">
+											
+											<img alt="삭제" src="./img/delete.png" class="commentDelete">
+											<img alt="수정" src="./img/edit.png" class="commentEdit">
+											
+										</c:if>
+									</div>
+									<div class="cdate">${co.ip } / ${co.cdate }</div>
+								</div>
+								<div class="ccomment">${co.comment }</div>
+							</div>
+						</c:forEach>
+					
+					</div>
 			</div>
 		</div>
 	</div>
