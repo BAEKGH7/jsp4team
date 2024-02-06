@@ -18,6 +18,15 @@ header {
 	/* justify-content: center; */
 	float: left;
 }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	background-color: #ffb703 !important;
+	color: #023047 !important;
+	font-weight: bold;
+}
+.menuItem {
+	color: white !important;
+	/* font-size: 15pt !important; */
+}
 main {
 	
 }

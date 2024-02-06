@@ -12,6 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./css/index.css?ver=0.01">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
@@ -24,8 +25,8 @@
 					<button class="searchBtn">검색</button>
 				</div>
 				<div class="joinLogin">
-					<button class="join">회원가입</button>
-					<button class="login">로그인</button>
+					<button class="btn btn-jelly">회원가입</button>
+					<button class="btn btn-jelly">로그인</button>
 				</div>
 			</div>
 			<div class="top2">
@@ -34,6 +35,28 @@
 				</div>
 			</div>
 		</header>
+		
+		<div class="carousel slide">
+  			<div class="carousel-inner">
+    			<div class="carousel-item active">
+      				<img src="./img/ridi1.png" alt="ridi1">
+    			</div>
+    			<div class="carousel-item">
+      				<img src="./img/ridi2.png" alt="ridi2">
+    			</div>
+    			<div class="carousel-item">
+      				<img src="./img/ridi3.png" alt="ridi3">
+    			</div>
+  			</div>
+  			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+   				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+   				<span class="visually-hidden">Previous</span>
+  			</button>
+  			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+    			<span class="visually-hidden">Next</span>
+  			</button>
+		</div>
 
 		<section class="new">
 			<div class="new1">

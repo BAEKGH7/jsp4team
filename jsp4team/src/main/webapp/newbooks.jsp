@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>국내도서</title>
+<title>신간도서</title>
 <link rel="stylesheet" href="./css/category.css">
 <!-- <link rel="stylesheet" href="./css/menu.css"> -->
 <link
@@ -24,8 +24,8 @@
 	<header>
 		<nav class="nav nav-pills bhItem">
 		  <a class="nav-link menuItem" href="./">메인화면</a>
-		  <a class="nav-link menuItem" href="./newBooks">신간</a>
-		  <a class="nav-link menuItem active" aria-current="page" href="./domestic">국내</a>
+		  <a class="nav-link menuItem active" aria-current="page" href="./new">신간</a>
+		  <a class="nav-link menuItem" href="./domestic">국내</a>
 		  <a class="nav-link menuItem" href="./foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
 		  <a class="nav-link menuItem" href="./login">로그인</a> </c:when> <c:otherwise>
 		  <a class="nav-link menuItem" href="./basket">장바구니</a>
@@ -69,8 +69,8 @@
 		    <li class="page-item">
 		      <a class="page-link" 
 		      <c:choose>
-		      <c:when test="${page - 10 lt 1 }">href="./domestic?page=1"</c:when>
-		      <c:otherwise>href="./domestic?page=${page - 10}"</c:otherwise>
+		      <c:when test="${page - 10 lt 1 }">href="./newBooks?page=1"</c:when>
+		      <c:otherwise>href="./newBooks?page=${page - 10}"</c:otherwise>
 		      </c:choose>
 		       aria-label="Previous" 
 		      	<c:if test="${page - 10 lt 1 }">disabled="disabled"</c:if>
@@ -82,15 +82,15 @@
 		    <li class="page-item">
 		    <a 
 		    <c:if test="${page eq p }">id="currentBtn"</c:if> 
-		    class="page-link" href="./domestic?page=${p }">${p }</a></li>
-		    <!-- <li class="page-item"><a class="page-link" href="./domestic?page=2">2</a></li>
-		    <li class="page-item"><a class="page-link" href="./domestic?page=3">3</a></li> -->
+		    class="page-link" href="./newBooks?page=${p }">${p }</a></li>
+		    <!-- <li class="page-item"><a class="page-link" href="./new?page=2">2</a></li>
+		    <li class="page-item"><a class="page-link" href="./new?page=3">3</a></li> -->
 		    </c:forEach>
 		    <li class="page-item">
 		      <a class="page-link" 
 				<c:choose>
-		        <c:when test="${page + 10 gt totalPage }">href="./domestic?page=${totalPage }"</c:when>
-		        <c:otherwise>href="./domestic?page=${page + 10}"</c:otherwise>
+		        <c:when test="${page + 10 gt totalPage }">href="./newBooks?page=${totalPage }"</c:when>
+		        <c:otherwise>href="./newBooks?page=${page + 10}"</c:otherwise>
 		        </c:choose>
 				aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
@@ -109,7 +109,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  <c:forEach items="${domesticList }" var="book">
+		  <c:forEach items="${newBookList }" var="book">
 		    <tr>
 		      <th align="center" valign="middle" class="coverth" scope="row">
 		      <img class="bookcover" alt="책표지" src="${book.bookcover }" onclick="location.href='./detail?page=${page }&isbn=${book.isbn }'">

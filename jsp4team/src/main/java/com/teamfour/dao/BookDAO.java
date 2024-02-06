@@ -183,4 +183,34 @@ public class BookDAO extends AbstractDAO {
 		
 		return result;
 	}
+	
+	public List<BookDTO> newBookList(int page) {
+		 List<BookDTO> list = new ArrayList<BookDTO>();
+		 Connection con = db.getConnection();
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 String sql = "SELECT isbn, booktitle, bookprice, author, publisher, publishdate, bookcover FROM book ORDER BY publishdate DESC LIMIT ?, 10";
+		 
+		 try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (page-1) * 10);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setBookprice(rs.getInt("bookprice"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setPublishdate(rs.getString("publishdate"));
+				dto.setBookcover(rs.getString("bookcover"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
+		 return list;
+	}
 }

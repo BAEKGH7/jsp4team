@@ -14,9 +14,10 @@ import org.json.simple.parser.ParseException;
 public class BookAPI {
 	String apiKey = "ttbdlwldms98031640001";
 	
-	public JSONArray newBookList() throws IOException {
+	public JSONArray newBookList(int start, int maxResult) throws IOException {
+		start = (start - 1) * 10;
         //신간도서 api
-        String apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey="+apiKey+"&QueryType=ItemNewSpecial&MaxResults=6&start=1&SearchTarget=Book&output=JS&Version=20131101";
+        String apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey="+apiKey+"&QueryType=ItemNewSpecial&MaxResults=" + maxResult + "&start=" + start + "&SearchTarget=Book&output=JS&Version=20131101";
         
         URL url = new URL(apiUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -46,6 +47,40 @@ public class BookAPI {
         }
 		
         return itemsArray;
+	}
+	
+	public JSONArray newBookList(int maxResult) throws IOException {
+		//신간도서 api
+		String apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey="+apiKey+"&QueryType=ItemNewSpecial&MaxResults=" + maxResult + "&start=1&SearchTarget=Book&output=JS&Version=20131101";
+		
+		URL url = new URL(apiUrl);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		StringBuilder jsonResponse = new StringBuilder();
+		String line;
+		
+		while ((line = reader.readLine()) != null) {
+			jsonResponse.append(line);
+		}
+		reader.close();
+		
+		// JSON 파싱
+		JSONParser parser = new JSONParser();
+		JSONArray itemsArray = null;
+		
+		JSONObject jsonObject;
+		try {
+			jsonObject = (JSONObject) parser.parse(jsonResponse.toString());
+			itemsArray = (JSONArray) jsonObject.get("item");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} finally {
+			conn.disconnect();
+		}
+		
+		return itemsArray;
 	}
 	
 	public JSONArray bestSellerList() throws IOException {

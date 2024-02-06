@@ -21,11 +21,14 @@
 <body>
 
 	<header>
-		<nav class="nav bhItem">
-		  <a class="nav-link" href="./">메인화면</a>
-		  <a class="nav-link" href="./domestic">국내</a>
-		  <a class="nav-link active" aria-current="page" href="./foreign">해외</a>
-		  <a class="nav-link disabled" aria-disabled="true">신작</a>
+		<nav class="nav nav-pills bhItem">
+		  <a class="nav-link menuItem" href="./">메인화면</a>
+		  <a class="nav-link menuItem" href="./newBooks">신간</a>
+		  <a class="nav-link menuItem" href="./domestic">국내</a>
+		  <a class="nav-link menuItem active" aria-current="page" href="./foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
+		  <a class="nav-link menuItem" href="./login">로그인</a> </c:when> <c:otherwise>
+		  <a class="nav-link menuItem" href="./basket">장바구니</a>
+		  <a class="nav-link menuItem" href="./logout">로그아웃</a> </c:otherwise> </c:choose>
 		</nav>
 	</header>
 	<main>

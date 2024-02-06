@@ -29,7 +29,7 @@ public class NewBookList extends HttpServlet {
     	BookAPI bookAPI = new BookAPI();
     	
     	//신간리스트 api
-    	JSONArray itemsArray = bookAPI.newBookList();
+    	JSONArray itemsArray = bookAPI.newBookList(6);
         request.setAttribute("bookNewList", itemsArray);
             
         //국내도서 베스트셀러 api
@@ -51,6 +51,7 @@ public class NewBookList extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }
