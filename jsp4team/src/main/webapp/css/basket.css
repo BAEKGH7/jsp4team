@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.top{
+	background-color: blue;
+	margin: 0;
+	position: top;
+}
+main{
+	background-color: gray;
+}
+.s1{
+	background-color: yellow;
+}
+.s2{
+	background-color: green;
+}

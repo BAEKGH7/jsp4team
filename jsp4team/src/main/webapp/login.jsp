@@ -8,14 +8,13 @@
 <title>로그인 페이지</title>
 <link rel="stylesheet" href="./css/login.css">
 <script type="text/javascript" src="./js/login.js"></script>
-
 <script type="text/javascript">
-function err(){
-	let errBox = document.querySelector("#errorMSG");
-	errBox.innerHTML = "<b>올바른 id와 pw를 입력하세요.</b>";
-	errBox.style.color = 'red';
-	errBox.style.fontsize = "10pt";
-}
+	function err(){
+		let errBox = document.querySelector("#errorMSG");
+		errBox.innerHTML = "<b>올바른 id와 pw를 입력하세요.</b>";
+		errBox.style.color = 'red';
+		errBox.style.fontsize = "10pt";
+	}
 </script>
 
 </head>
@@ -55,6 +54,6 @@ function err(){
 		</script>
 	
 	</c:if>
-	
+
 </body>
 </html>
