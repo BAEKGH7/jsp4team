@@ -2,6 +2,8 @@
 
 header{
 	height: 300px;
+	padding-left: 250px;
+    padding-right: 250px; 
 }
 
 .top1 {
@@ -32,8 +34,8 @@ nav{
 	width: 400px;
 	border: 1px solid orange;
 	background-color: #ffffff;
-	margin-left: 300px;
-	margin-right: 300px;
+	margin-left: 240px;
+	margin-right: 240px;
 }
 
 .searchText{
@@ -49,25 +51,63 @@ nav{
 	width: 50px;
 	height: 100%;
 	border: 0px;
-	background-color: orange;
+	background-color: #fb8500;
 	outline: none;
 	float: right;
 	color: #ffffff;
 }
 
-.join{
-	margin-right: 20px;
-	height: 50px;
+.btn{
+	margin: 1rem;
+	background-color: #fb8500;
+	color: white;
 }
 
-.login{
-	height: 50px;
+.btn-jelly:hover {
+	background-color: orange;
+	color: white;
+  -webkit-animation: jelly 0.5s;
+          animation: jelly 0.5s;
 }
+
+@-webkit-keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+.carousel-inner {
+	width: 100%;
+	margin-top: 100px;
+	padding-left: 250px;
+	padding-right: 250px;
+}
+
 
 .new {
 	width: 100%;
 	margin-top: 100px;
 	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px; 
 }
 
 .domestic {
@@ -75,6 +115,8 @@ nav{
 	margin-top: 200px;
 	position: hidden;
 	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px; 
 }
 
 .foreign {
@@ -82,6 +124,8 @@ nav{
 	margin-top: 200px;
 	margin-bottom : 50px;
 	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px;
 }
 
 .new1, .domestic1, .foreign1 {
