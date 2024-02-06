@@ -194,7 +194,7 @@ $(function() {
 								data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseThree"
 								aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseThree">저자 프로필</button>
+								aria-controls="panelsStayOpen-collapseThree">${book.profile}</button>
 						</h2>
 						<div id="panelsStayOpen-collapseThree"
 							class="accordion-collapse collapse">
