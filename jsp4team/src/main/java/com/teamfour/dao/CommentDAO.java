@@ -16,8 +16,8 @@ public class CommentDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "INSERT INTO comment (ccomment, mid, mname, ip, cdate) "
-				+ "VALUES (?, ?, (SELECT mno FROM member WHERE isbn=?), ?)";
+		String sql = "INSERT INTO comment (comment, mid, mname, ip, cdate) "
+				+ "VALUES (?, ?, (SELECT mno FROM member WHERE mid=?), ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getComment());
