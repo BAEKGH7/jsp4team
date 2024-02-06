@@ -41,9 +41,6 @@ public class Detail extends HttpServlet {
 			request.setAttribute("commentList", commentList);
 		}
 		
-		
-		
-		
 		// 리퀘스트디스패쳐 호출하기
 		RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
 		rd.forward(request, response);
