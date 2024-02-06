@@ -2,7 +2,7 @@ package com.teamfour.dto;
 
 public class CommentDTO {
 	private int cno, mno, del;
-	private String comment, mid, mname, cdate, ip, bookId;
+	private String comment, mid, mname, cdate, ip, isbn;
 
 	public int getCno() {
 		return cno;
@@ -14,6 +14,14 @@ public class CommentDTO {
 
 	public int getMno() {
 		return mno;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public void setMno(int mno) {
@@ -66,14 +74,6 @@ public class CommentDTO {
 
 	public void setDel(int del) {
 		this.del = del;
-	}
-
-	public String getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
 	}
 
 }
