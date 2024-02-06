@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.teamfour.dto.CommentDTO;
 import com.teamfour.dao.BookDAO;
@@ -40,6 +41,12 @@ public class Detail extends HttpServlet {
 		if(commentList.size() > 0) {
 			request.setAttribute("commentList", commentList);
 		}
+		
+		//로그인했을 때 session 값 잡기
+		HttpSession session = request.getSession();
+		String mid = (String)session.getAttribute("mid");
+		request.setAttribute("mid", mid);
+		System.out.println(mid);
 		
 		// 리퀘스트디스패쳐 호출하기
 		RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
