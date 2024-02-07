@@ -2,6 +2,7 @@
 
 h1{
 	color: orange;
+	margin-top: 100px;
 }
 
 .id-alert, .name-alert, .pw-alert {
@@ -10,4 +11,107 @@ h1{
 
 .alert {
 	color: red;
+}
+
+.container1 {
+	margin-top: 300px;
+}
+
+
+header{
+	height: 300px;
+	padding-left: 250px;
+    padding-right: 250px; 
+}
+.logoImg:hover {
+	cursor: pointer;
+}
+.top1 {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	justify-content: space-between;
+	height: 250px;
+	
+}
+
+.top2{
+	height: 50px;
+}
+
+.top > img {
+	height: 100px;
+	width: 250px;
+}
+
+nav{
+	margin: 0;
+	padding: 0;
+}
+
+.search{
+	width: 400px;
+	
+	height: 60px;
+	margin: 0 100px;
+	background-color: #ffffff;
+	flex-grow: 1;
+}
+.searchInputGroup {
+	width: 100%;
+	height: 100%;
+	min-width: 100px;
+}
+
+.searchText{
+	width: 100%;
+	height: 100%;
+	border: 1px solid orange !important;
+	float: left;
+}
+
+.searchBtn{
+	/* width: 50px;
+	height: 100%; */
+	border: 0px !important;
+	background-color: #fb8500;
+	/* outline: none; */
+	float: right;
+	color: #ffffff;
+}
+
+.btn{
+	background-color: #fb8500 !important;
+	color: white !important;
+}
+
+.btn-jelly:hover {
+	background-color: orange;
+	color: white;
+  -webkit-animation: jelly 0.5s;
+          animation: jelly 0.5s;
+}
+
+@-webkit-keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
 }
