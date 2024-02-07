@@ -10,11 +10,28 @@
 <link href="./css/index.css" rel="stylesheet" />
 <link href="./css/basket.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript" src="./js/basket.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('.allcheck').change(function(){
+		let allcheck=$(this).val();
+		alert(allcheck);
+		if(allcheck=='1'){
+			alert('전체 체크합니다.');
+		}
+	});
 	
+	$('input[name="choice"]').change(function(){
+		let choice=$(this).text();
+		if(choice=='1'){
+			alert(' 체크합니다.');
+		}
+        //updateCart();
+    });
+
 });
 </script>
 </head>
@@ -40,14 +57,19 @@ $(function(){
 				</div>
 			</div>
 		</header>
+		<div class="cartcontainer">
 		<section class="s1">
-			<div class="cart">
+			
 				<div class="check_box">
-					<input type="checkbox" name="allcheck" onclick="selectAll(this)"> <b>전체 선택</b>
-					<button>삭제</button>
+					<div class="checkbox">
+						<input class="allcheck" type="checkbox" name="allcheck" onclick="selectAll(this)" value="1"> <b>전체 선택</b>
+					</div>
+					<div class="d_btn">
+						<button class="delete_btn">삭제</button>
+					</div>
 				</div>
 				<div class="cart_list">
-					<table>
+					<table class="table1">
 						<thead>
 							<tr>
 								<th>선택</th>
@@ -61,12 +83,14 @@ $(function(){
 						<tbody>
 						<c:forEach items="${list}" var="row">
 							<tr>
-								<td><input type="checkbox" name="choice" onclick="checkSelectAll()"></td>
-								<td>${row.bookcover}</td>
-								<td>${row.booktitle}</td>
-								<td>${row.bookprice}</td>
-								<td><button class="minuscount" onclick="minus()">-</button>수량: ${row.ccount}<button class="pluscount" onclick="plus()">+</button></td>
-								<td><button>삭제</button></td>
+								<td class="d05">
+								<input type="checkbox" name="choice" onclick="checkSelectAll()" value="1">
+								</td>
+								<td class="cover"><img alt="책표지" src="${row.bookcover}" width="100px;"></td>
+								<td class="d3">${row.booktitle}</td>
+								<td class="d1">${row.bookprice}</td>
+								<td class="d2"><button class="minuscount" onclick="minus()">-</button>수량: ${row.quantity}<button class="pluscount" onclick="plus()">+</button></td>
+								<td class="d05"><button>삭제</button></td>
 							</tr>
 						</c:forEach>
 						</tbody>
@@ -75,7 +99,6 @@ $(function(){
 				<div class="cart_page">
 				
 				</div>
-			</div>
 		</section>
 		<section class="s2">
 			<div class="checklist">
@@ -85,8 +108,8 @@ $(function(){
 							<tr>
 								<th>상품명</th>
 								<th>수량</th>
-								<th>상품가</th>
-								<th>합계</th>
+								<th>상품합계</th>
+								<th>총합계</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -102,9 +125,10 @@ $(function(){
 						</tbody>
 					</table>
 				</div>
-				<button onclick="url('./payment')">구매하기</button>
+				<button onclick="url('./order')">구매하기</button>
 			</div>
 		</section>
+		</div>
 	</main>
 </body>
 </html>

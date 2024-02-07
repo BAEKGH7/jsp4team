@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.teamfour.dto.CartDTO;
 
@@ -75,6 +77,49 @@ public class BasketDAO extends AbstractDAO {
 			close(null, pstmt, conn);
 		}
 		return result;
+	}
+
+	public List<CartDTO> cartList(int mno) {
+		List<CartDTO> list = new ArrayList<CartDTO>();
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * from cartview WHERE mno=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CartDTO c = new CartDTO();
+				c.setCartno(rs.getInt("cartno"));
+				c.setIsbn(rs.getString("isbn"));
+				c.setBookcover(rs.getString("bookcover"));
+				c.setBooktitle(rs.getString("booktitle"));
+				c.setBookprice(rs.getInt("bookprice"));
+				c.setQuantity(rs.getInt("quantity"));
+				c.setSumprice(rs.getInt("sumprice"));
+				c.setCcheck(rs.getString("ccheck"));
+				c.setMno(rs.getInt("mno"));
+				c.setMid(rs.getString("mid"));
+				
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+		
+		
+		return list;
+	}
+
+	public List<CartDTO> priceList(int mno) {
+		
+		return null;
 	}
 
 }
