@@ -13,7 +13,7 @@ import org.json.simple.JSONArray;
 import com.teamfour.api.BookAPI;
 
 
-@WebServlet("/index")
+@WebServlet("/index2")
 public class NewBookList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

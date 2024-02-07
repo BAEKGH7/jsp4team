@@ -1,11 +1,137 @@
 @charset "UTF-8";
 
-h1{
-	color: orange;
+header{
+	height: 300px;
+	padding-left: 250px;
+    padding-right: 250px; 
+}
+
+.top1 {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	justify-content: center;
+	height: 250px;
+	
+}
+
+.top2{
+	height: 50px;
+}
+
+.top > img {
+	height: 100px;
+	width: 250px;
+}
+
+nav{
+	margin: 0;
+	padding: 0;
+}
+
+.search{
+	height: 50px;
+	width: 400px;
+	border: 1px solid orange;
+	background-color: #ffffff;
+	margin-left: 240px;
+	margin-right: 240px;
+}
+
+.searchText{
+	font-size: 16px;
+	width: 325px;
+	padding: 10px;
+	border: 0px;
+	outline: none;
+	float: left;
+}
+
+.searchBtn{
+	width: 50px;
+	height: 100%;
+	border: 0px;
+	background-color: #fb8500;
+	outline: none;
+	/* float: right; */
+	color: #ffffff;
+}
+
+.btn{
+	margin: 1rem;
+	background-color: #fb8500 !important;
+	color: white !important;
+}
+
+.btn-jelly:hover {
+	background-color: orange;
+	color: white;
+  -webkit-animation: jelly 0.5s;
+          animation: jelly 0.5s;
+}
+
+@-webkit-keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+.new {
+	width: 100%;
+	margin-top: 100px;
+	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px; 
+}
+
+.domestic {
+	width: 100%;
+	margin-top: 200px;
+	position: hidden;
+	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px; 
+}
+
+.foreign {
+	width: 100%;
+	margin-top: 200px;
+	margin-bottom : 50px;
+	display: inline-block;
+	padding-left: 250px;
+    padding-right: 250px;
+}
+
+.new1, .domestic1, .foreign1 {
+	width: 100%;
+}
+
+.new2, .domestic2, .foreign2 {
+	width: 100%;
+	display: flex;
 }
 	
 .login{
 	margin: 0 auto;
+	margin-top: 100px;
 	width: 300px;
 	min-height: 300px;
 	background-color: #c1c1c1;
@@ -27,7 +153,7 @@ h1{
 	height: 30px;
 	color: green;
 	font-size: large;
-}
+} 
 
 #errorMSG {
   animation: blink-effect 1s step-end infinite;
