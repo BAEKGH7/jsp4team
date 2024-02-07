@@ -24,9 +24,11 @@
 					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
 					<button class="searchBtn">검색</button>
 				</div>
-				<div class="joinLogin">
-					<button class="btn btn-jelly">회원가입</button>
-					<button class="btn btn-jelly">로그인</button>
+				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
+					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
+					<button class="btn btn-jelly" onclick ="window.location.href='./myinfo'">마이페이지</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
 				</div>
 			</div>
 			<div class="top2">
