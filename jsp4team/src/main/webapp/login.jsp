@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 <link rel="stylesheet" href="./css/login.css">
+<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" href="./css/index.css">
 <script type="text/javascript" src="./js/login.js"></script>
 <script type="text/javascript">
 	function err(){
@@ -20,7 +22,24 @@
 </head>
 <body>
 		<header>
-			<jsp:include page="menu.jsp"></jsp:include>
+			<div class="top1">
+				<img alt="logo" src="./img/logo.png" width="300px;">
+				<div class="search">
+					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
+					<button class="searchBtn">검색</button>
+				</div>
+				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
+					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
+					<button class="btn btn-jelly" onclick ="window.location.href='./basket'">장바구니</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
+				</div>
+			</div>
+			<div class="top2">
+				<div class="menu">
+				<%@ include file="menu.jsp"%>
+				</div>
+			</div>
 		</header>
 	<h1>로그인 페이지</h1>
 	<div class="container">
