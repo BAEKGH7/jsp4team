@@ -82,7 +82,7 @@ $(document).ready(function (){
 			<div class="new2">
 			<c:forEach items="${newBook }" var="row">
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-100" onclick="location.href='./detail?isbn=${row.isbn }'">
 						<img src="${row.bookcover }" class="card-img-top" alt="newbook">
 						<div class="card-body"></div>
 						<div class="card-footer">
@@ -103,7 +103,7 @@ $(document).ready(function (){
 				<div class="domestic2">
 				<c:forEach items="${newDomestic}" var="row1" begin="0" end="5">
 					<div class="col">
-						<div class="card h-100">
+						<div class="card h-100" onclick="location.href='./detail?isbn=${row1.isbn }'">
 							<img src="${row1.bookcover }" class="card-img-top" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">
@@ -123,7 +123,7 @@ $(document).ready(function (){
 				<div class="foreign2">
 				<c:forEach items="${newForeign }" var="row3" >
 					<div class="col">
-						<div class="card h-100">
+						<div class="card h-100" onclick="location.href='./detail?isbn=${row3.isbn }'">
 							<img src="${row3.bookcover }" class="card-img-top" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">

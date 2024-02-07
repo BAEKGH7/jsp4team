@@ -299,7 +299,7 @@ public class BookDAO extends AbstractDAO {
 				dto.setIsbn(rs.getString("isbn"));
 				dto.setBookcover(rs.getString("bookcover"));
 				dto.setBooktitle(rs.getString("booktitle"));
-				dto.setBookcover(rs.getString("bookcover"));
+				dto.setAuthor(rs.getString("author"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {
