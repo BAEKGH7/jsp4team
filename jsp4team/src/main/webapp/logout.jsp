@@ -13,8 +13,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./js/menu.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <script type="text/javascript">
+$(document).ready(function (){
+	
+	$('.searchBtn').click(function (){
+		let searchItem = $('.searchText').val();
+		window.location.href="./search?keyword=" + searchItem;
+	});
+	
+});
 //카운트 시작 숫자
 var count = 5;
 //카운트다운함수
@@ -35,10 +42,18 @@ $("p.countdown").html("<b><font size='66pt'>" + count + "</font><b>초 후 이�
 <body>
 		<header>
 			<div class="top1">
-				<img alt="logo" src="./img/logo.png" width="300px;">
+				<img class="logoImg" alt="logo" src="./img/logo.png" onclick="location.href='./'" width="300px;">
 				<div class="search">
-					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
-					<button class="searchBtn">검색</button>
+					<div class="input-group mb-3 searchInputGroup">
+					  <input type="text" class="form-control searchText" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+					  <button class="btn btn-outline-secondary btn-jelly searchBtn" type="button" id="button-addon2">검색</button>
+					</div>
+				</div>
+				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
+					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
+					<button class="btn btn-jelly" onclick ="window.location.href='./basket'">장바구니</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
 				</div>
 			</div>
 			<div class="top2">
