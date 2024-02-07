@@ -31,7 +31,6 @@ nav{
 .search{
 	height: 50px;
 	width: 400px;
-	border: 1px solid orange;
 	background-color: #ffffff;
 	margin-left: 240px;
 	margin-right: 240px;
@@ -57,7 +56,6 @@ nav{
 }
 
 .btn{
-	margin: 1rem;
 	background-color: #fb8500;
 	color: white;
 }
