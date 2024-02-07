@@ -5,7 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.naming.spi.DirStateFactory.Result;
+import javax.print.attribute.HashAttributeSet;
 
 import com.teamfour.db.DBConnection;
 import com.teamfour.dto.BookDTO;
@@ -276,6 +281,84 @@ public class BookDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		
+		return list;
+	}
+
+	public List<BookDTO> newBookIndex() {
+		List<BookDTO> list = new ArrayList<BookDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, bookcover, booktitle, author FROM book order by publishdate desc LIMIT 0, 6;";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBookcover(rs.getString("bookcover"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setAuthor(rs.getString("author"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	public List<BookDTO> newDomestic() {
+		List<BookDTO> list = new ArrayList<BookDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, bookcover, booktitle, author FROM domesticview LIMIT 0, 6;";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBookcover(rs.getString("bookcover"));
+				dto.setBooktitle(rs.getString("booktitle"));
+				dto.setAuthor(rs.getString("author"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	public List<Map<String, Object>> newForeign() {
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT isbn, booktitle, bookcover, author FROM foreignview LIMIT 0, 6";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("isbn", rs.getString("isbn"));
+				map.put("booktitle", rs.getString("booktitle"));
+				map.put("bookcover", rs.getString("bookcover"));
+				map.put("author", rs.getString("author"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
 		return list;
 	}
 }

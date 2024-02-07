@@ -55,7 +55,7 @@ $(document).ready(function (){
 		</header>
 		
 		<div class="carousel slide">
-  			<div class="carousel-inner">
+  			<div class="carousel-inner imgSize">
     			<div class="carousel-item active">
       				<img src="./img/ridi1.png" alt="ridi1">
     			</div>
@@ -80,13 +80,13 @@ $(document).ready(function (){
 			<div class="new1">
 				<h3>당근서점, 화제의 신간</h3>
 			<div class="new2">
-			<c:forEach items="${bookNewList }" var="row">
+			<c:forEach items="${newBook }" var="row">
 				<div class="col">
-					<div class="card h-100">
-						<img src="${row.cover }" class="card-img-top" alt="newbook">
+					<div class="card h-100" onclick="location.href='./detail?isbn=${row.isbn }'">
+						<img src="${row.bookcover }" class="card-img-top" alt="newbook">
 						<div class="card-body"></div>
 						<div class="card-footer">
-							<small class="text-body-secondary">${row.title}<br>${row.author}
+							<small class="text-body-secondary">${row.booktitle}<br>${row.author}
 							</small>
 						</div>
 					</div>
@@ -101,13 +101,13 @@ $(document).ready(function (){
 			<div class="domestic1">
 				<h3>국내도서 베스트셀러</h3>
 				<div class="domestic2">
-				<c:forEach items="${bestBookList}" var="row1" begin="0" end="5">
+				<c:forEach items="${newDomestic}" var="row1" begin="0" end="5">
 					<div class="col">
-						<div class="card h-100">
-							<img src="${row1.cover }" class="card-img-top" alt="newbook1">
+						<div class="card h-100" onclick="location.href='./detail?isbn=${row1.isbn }'">
+							<img src="${row1.bookcover }" class="card-img-top" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">
-								<small class="text-body-secondary">${row1.title}<br>${row1.author}
+								<small class="text-body-secondary">${row1.booktitle}<br>${row1.author}
 								</small>
 							</div>
 						</div>
@@ -121,13 +121,13 @@ $(document).ready(function (){
 			<div class="foreign1">
 				<h3>해외도서 베스트셀러</h3>
 				<div class="foreign2">
-				<c:forEach items="${bestFBookList}" var="row3" >
+				<c:forEach items="${newForeign }" var="row3" >
 					<div class="col">
-						<div class="card h-100">
-							<img src="${row3.cover }" class="card-img-top" alt="newbook1">
+						<div class="card h-100" onclick="location.href='./detail?isbn=${row3.isbn }'">
+							<img src="${row3.bookcover }" class="card-img-top" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">
-								<small class="text-body-secondary">${row3.title }<br>${row3.author}
+								<small class="text-body-secondary">${row3.booktitle }<br>${row3.author}
 								</small>
 							</div>
 						</div>

@@ -144,6 +144,9 @@ nav{
 .col{
 	padding-right: 10px;
 }
+.card:hover{
+	cursor: pointer;	
+}
 
 .card-img-top{
 	width:220px;

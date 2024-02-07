@@ -54,12 +54,12 @@
 				</div>
 			</div>
 		</header>
-	<h1>로그인 페이지</h1>
+	<!-- <h1>로그인 페이지</h1> -->
 	<div class="container">
 		<div class="main">
 			<div class="mainStyle">
 				<article>
-					<h1>login</h1>
+					<!-- <h1>login</h1> -->
 					
 					<div class="login">
 						<form action="./login" method="post">
