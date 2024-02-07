@@ -29,6 +29,109 @@
 <!-- 여기에 스크립트 코드 삽입 -->
 <script type="text/javascript">
 $(function() {
+	
+
+	
+	
+	/* 댓글 수정기능 */
+	//댓글수정 form 만들기
+	$(".commentEdit").click(function(){
+		if(confirm('수정하시겠습니까?')){
+			//필요한 값 cno잡기 / 수정한 내용 + 로그인 ==== 서블릿에서 정리
+			let cno = $(this).siblings(".cno").val();
+			let comment = $(this).parents(".chead").next(); // 나중에 다시 변경
+			$(this).prev().hide();
+			$(this).hide();
+			comment.css('height','110');
+			comment.css('padding-top','10px');
+			comment.css('backgroundColor','#c1c1c1');
+			let commentChange = comment.html().replaceAll("<br>", "\r\n");
+			//alert(cno + " : " + comment);
+			let recommentBox = '<div class="recommentBox">';
+			recommentBox += '<textarea class="commentcontent">' + commentChange + '</textarea>';
+			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
+			recommentBox += '<button class="comment-btn">댓글 수정</button>';
+			recommentBox += '</div>';
+			
+			comment.html(recommentBox);
+		}
+	});
+	
+	//댓글수정 동작시키기
+	$(document).on('click',".comment-btn", function() {
+		if(confirm('수정하시겠습니까?')){
+		let cno = $(this).prev().val();
+		let recomment = $('.commentcontent').val();
+		let comment = $(this).parents(".ccomment");//댓글 위치
+		//alert("!");
+		$.ajax({
+			url : './recomment',
+			type:'post',
+			dataType: 'text',
+			data: {'cno': cno, 'comment': recomment},
+			success: function(result){
+				//alert('통신 성공' + result);
+				if(result ==1){
+					//수정된 데이터를 화면에 보여주기
+					//comment.html(recomment);
+					$(this).parent(".recommentBox").remove();
+					comment.css('backgroundColor','#ffffff');
+					comment.css('min-height','100px');
+					comment.css('height','auto'); //줄바꿈(feat.시호)
+					comment.html(recomment.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+					$(".commentDelete").show();
+					$(".commentEdit").show();
+				}else {
+					
+					alert("문제가 발생했습니다. 화면을 갱신합니다.")
+					//실패 화면 재로드
+					location.href='./detail?page=${page}&isbn=${detail.isbn}';
+				}
+			},
+			error: function(error){
+				alert('문제가 발생했습니다.' + error);
+			}
+		});
+		}
+	});
+	
+	/* 여기부터는 삭제하기~ */
+	$(".commentDelete").click(function(){
+		if(confirm("삭제 하시겠습니까?")) {
+		let text = $(this).parent(".cname").text(); 
+		let cno = $(this).prev().val(); 
+		let point = $(this).closest(".comment");
+		$.ajax({ 
+			url : './commentDel',	// 주소
+			type : 'post',			// get, post
+			dataType : 'text',		// 수신타입 json
+			data: {no:cno},			// 보낼 값
+			success: function(result){ //0, 또는 1을 받아옴(commentDel에서)
+				//alert("서버에서 온 값 : " + result);
+				if(result ==1) {
+					//정상삭제 : this의 부모를 찾아서 remove하겠습니다.
+					//$(this).closest(".comment").hide(); //숨기기
+					//$(this).closest(".comment").remove(); //실제 삭제
+					//alert(e);
+					point.remove();
+				} else {
+					alert("삭제할 수 없습니다. 관리자에게 문의하세요");
+				}
+				
+			},
+			error: function(request, status, error){ //통신 오류
+				alert("문제가 발생했습니다.");
+			}
+		}); //end ajax
+		}
+		
+		
+	});
+	
+	
+	
+	
+	/* 이 아래는 1팀장님이 장바구니 추가한 내용 */
 		let mid = "${mid}";
 		$('.modal').hide();
 		$('.addcart').click(function() {
