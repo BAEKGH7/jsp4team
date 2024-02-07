@@ -30,20 +30,33 @@ public class AddBasket extends HttpServlet {
 		System.out.println(request.getParameter("quantity"));
 		
 		HttpSession session = request.getSession();
-		int mno = (int)session.getAttribute("mno");
-		String isbn = request.getParameter("isbn");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		if(session.getAttribute("mid") != null || session.getAttribute("mname") != null) {
+			String mid = request.getParameter("mid");
+			String isbn = request.getParameter("isbn");
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			
+			CartDTO dto = new CartDTO();
+			dto.setMid(mid);
+			dto.setIsbn(isbn);
+			dto.setQuantity(quantity);
+			BasketDAO dao = new BasketDAO();
+			
+			int result=dao.checkCart(dto);
+			if(result==1){
+				int result2=dao.updateQuantity(dto);
+				request.setAttribute("result", result2);
+				PrintWriter pw = response.getWriter(); pw.print(result2);
+			} else {				
+				int result3= dao.addCart(dto);
+				request.setAttribute("result", result3);
+				PrintWriter pw = response.getWriter(); pw.print(result3);
+			}
+			
+		} else {
+			response.sendRedirect("./login");
+		}
 		
-		BasketDAO dao = new BasketDAO();
-		CartDTO dto = new CartDTO();
-		dto.setMno(mno);
-		dto.setIsbn(isbn);
-		dto.setQuantity(quantity);
 		
-		int result=dao.addCart(dto);
-		
-		
-		PrintWriter pw = response.getWriter(); pw.print(result);
 	}
 
 }

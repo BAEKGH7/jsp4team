@@ -5,12 +5,14 @@ header{
 	padding-left: 250px;
     padding-right: 250px; 
 }
-
+.logoImg:hover {
+	cursor: pointer;
+}
 .top1 {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
-	justify-content: center;
+	justify-content: space-between;
 	height: 250px;
 	
 }
@@ -30,37 +32,39 @@ nav{
 }
 
 .search{
-	height: 50px;
 	width: 400px;
-	border: 1px solid orange;
+	
+	height: 60px;
+	margin: 0 100px;
 	background-color: #ffffff;
-	margin-left: 240px;
-	margin-right: 240px;
+	flex-grow: 1;
+}
+.searchInputGroup {
+	width: 100%;
+	height: 100%;
+	min-width: 100px;
 }
 
 .searchText{
-	font-size: 16px;
-	width: 325px;
-	padding: 10px;
-	border: 0px;
-	outline: none;
+	width: 100%;
+	height: 100%;
+	border: 1px solid orange !important;
 	float: left;
 }
 
 .searchBtn{
-	width: 50px;
-	height: 100%;
-	border: 0px;
+	/* width: 50px;
+	height: 100%; */
+	border: 0px !important;
 	background-color: #fb8500;
-	outline: none;
+	/* outline: none; */
 	float: right;
 	color: #ffffff;
 }
 
 .btn{
-	margin: 1rem;
-	background-color: #fb8500;
-	color: white;
+	background-color: #fb8500 !important;
+	color: white !important;
 }
 
 .btn-jelly:hover {

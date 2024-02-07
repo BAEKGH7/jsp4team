@@ -27,11 +27,19 @@ $(document).ready(function (){
 	<div class="">
 		<header>
 			<div class="top1">
-				<img alt="logo" src="./img/logo.png" width="300px;">
+				<img class="logoImg" alt="logo" src="./img/logo.png" onclick="location.href='./'" width="300px;">
 				<div class="search">
-					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
-					<button class="searchBtn">검색</button>
+					<div class="input-group mb-3 searchInputGroup">
+					  <input type="text" class="form-control searchText" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+					  <button class="btn btn-outline-secondary btn-jelly searchBtn" type="button" id="button-addon2">검색</button>
+					</div>
 				</div>
+				<!-- <div class="search">
+					<div class="searchSet">
+						<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
+						<button class="searchBtn">검색</button>
+					</div>
+				</div> -->
 				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
 					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
 					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>

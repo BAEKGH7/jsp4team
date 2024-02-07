@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>장바구니</title>
+<link href="./css/menu.css" rel="stylesheet" />
 <link href="./css/index.css" rel="stylesheet" />
 <link href="./css/basket.css" rel="stylesheet" />
-<link href="./css/menu.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script type="text/javascript" src="../js/menu.js"></script>
-<script type="text/javascript" src="../js/basket.js"></script>
+<script type="text/javascript" src="./js/menu.js"></script>
+<script type="text/javascript" src="./js/basket.js"></script>
 <script type="text/javascript">
 $(function(){
 	
@@ -20,10 +20,26 @@ $(function(){
 </head>
 <body>
 	<main>
-	<header class="top">
-		<img alt="logo" src="./img/logo.png" width="300px;">
-		<%@ include file="menu.jsp" %>
-	</header>
+	<header>
+			<div class="top1">
+				<img alt="logo" src="./img/logo.png" width="300px;">
+				<div class="search">
+					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
+					<button class="searchBtn">검색</button>
+				</div>
+				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
+					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
+					<button class="btn btn-jelly" onclick ="window.location.href='./myinfo'">마이페이지</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
+				</div>
+			</div>
+			<div class="top2">
+				<div class="menu">
+				<%@ include file="menu.jsp"%>
+				</div>
+			</div>
+		</header>
 		<section class="s1">
 			<div class="cart">
 				<div class="check_box">
@@ -61,7 +77,7 @@ $(function(){
 				</div>
 			</div>
 		</section>
-		<section class="2">
+		<section class="s2">
 			<div class="checklist">
 				<div class="checklist">
 					<table>

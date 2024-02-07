@@ -2,7 +2,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 		<nav>
 			<ul>
-				<li onclick="window.location.href='./new'">신작도서</li>
+				<li onclick="window.location.href='./newBooks'">신작도서</li>
 				<li onclick="window.location.href='./domestic'">국내도서</li>
 				<li onclick="window.location.href='./foreign'">해외도서</li>
 				<li onclick="window.location.href='./basket'">장바구니</li> <c:choose> <c:when test="${sessionScope.mname eq null }">
