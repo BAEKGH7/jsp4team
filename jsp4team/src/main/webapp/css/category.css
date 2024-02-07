@@ -7,16 +7,21 @@ body {
 }
 
 header {
-	width: 100%;
+	/* width: 100%;
 	height: 80px;
-	background-color: #fb8500;
+	background-color: #fb8500; */
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 .bhItem {
 	/* justify-content: center; */
+	width: 100%;
 	float: left;
+	background-color: #fb8500;
+	display: flex;
+	justify-content: center;
 }
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
 	background-color: #ffb703 !important;

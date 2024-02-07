@@ -27,7 +27,7 @@ $(document).ready(function (){
 	<div class="">
 		<header>
 			<div class="top1">
-				<img alt="logo" src="./img/logo.png" width="300px;">
+				<img class="logoImg" alt="logo" src="./img/logo.png" onclick="location.href='./'" width="300px;">
 				<div class="search">
 					<div class="input-group mb-3 searchInputGroup">
 					  <input type="text" class="form-control searchText" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">

@@ -5,7 +5,9 @@ header{
 	padding-left: 250px;
     padding-right: 250px; 
 }
-
+.logoImg:hover {
+	cursor: pointer;
+}
 .top1 {
 	display: flex;
 	align-items: center;
@@ -46,14 +48,14 @@ nav{
 .searchText{
 	width: 100%;
 	height: 100%;
-	border: 1px solid orange;
+	border: 1px solid orange !important;
 	float: left;
 }
 
 .searchBtn{
 	/* width: 50px;
 	height: 100%; */
-	border: 0px;
+	border: 0px !important;
 	background-color: #fb8500;
 	/* outline: none; */
 	float: right;
@@ -61,8 +63,8 @@ nav{
 }
 
 .btn{
-	background-color: #fb8500;
-	color: white;
+	background-color: #fb8500 !important;
+	color: white !important;
 }
 
 .btn-jelly:hover {
