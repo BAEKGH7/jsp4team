@@ -129,7 +129,7 @@
 
 
 </head>
-<body>
+<body> 
 		<header>
 			<div class="top1">
 				<img class="logoImg" alt="logo" src="./img/logo.png" onclick="location.href='./'" width="300px;">
