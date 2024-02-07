@@ -5,10 +5,63 @@ header{
 }
 main{
 	background-color: gray;
+	width: 100%;
+}
+.cartcontainer{
+	display: flex;
+    justify-content: space-between;
 }
 .s1{
+	box-sizing: border-box;
+	height: auto;
 	background-color: yellow;
+	width: calc(70% - 20px);
+	margin: 10px;
+}
+.check_box{
+	height: 100px;
+	display: flex;
+    justify-content: space-between;
+}
+.checkbox{
+	box-sizing: border-box;
+	width: 50%;
+	height:100px;
+}
+.d_btn{
+	box-sizing: border-box;
+	width: 50%;
+	height: 100px;
+	float:right;
+}
+.delete_btn{
+	width: 50px;
+	height: 40px;
+}
+.table1{
+	width: calc(100% - 20px);
+	margin: 10px;
+	text-align: center;
+}
+.cover{
+	width: 110px;
+}
+.d05{
+	width: 5%;
+}
+.d1{
+	width: 10%;
+}
+.d2{
+	width: 20%;
+}
+.d3{
+	width: 30%;
 }
 .s2{
+	box-sizing: border-box;
 	background-color: green;
+	width: calc(30% - 20px);
+	margin: 10px;
+	
 }
