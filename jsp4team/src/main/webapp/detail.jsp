@@ -19,6 +19,9 @@
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
 <script type="text/javascript" src="./js/menu.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"	crossorigin="anonymous"></script>
+<script type="text/javascript" src="./js/menu.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- ajax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- jQuery 라이브러리를 먼저 로드 -->
@@ -52,19 +55,32 @@ $(function() {
 		                url: './addbasket',
 		                type: 'post',
 		                dataType: 'text',
-		                data: {'isbn': isbn, 'quantity' : quantity},
+		                data: {'isbn': isbn, 'mid' : mid, 'quantity' : quantity},
 		                success: function(result) {
 		                   // alert('성공 : ' + result);
+		                   if(result==1){
+								$('.modal').show();
+								$('.shoppingBtn').click(function() {
+		                        	$('#modal').hide();
+		                        	let urlParams = new URLSearchParams(window.location.search);
+		        		            let isbn = urlParams.get('isbn');
+		        		            let page = urlParams.get('page');
+		        					location.href = './detail?page='+page+'&isbn='+isbn;
+		                       });
+								$('.go_cartBtn').click(function(){
+									$('#modal').hide();
+		                        	location.href = './basket';
+		                	   });
+		                   } else{
+		                	   alert('오류가 발생했습니다.');
+		                   }
 		                },
 		                error: function(error) {
-		                   // alert('실패 : ' + error);
+		                   alert('실패 : ' + error);
 		                }
 		            });
 				} else {
-					let urlParams = new URLSearchParams(window.location.search);
-		            let isbn = urlParams.get('isbn');
-		            let page = urlParams.get('page');
-					location.href = './detail?page='+page+'&isbn='+isbn; // ISBN을 사용하여 상세 페이지로 이동
+					return;
 				}
 			}
 			
@@ -106,17 +122,30 @@ $(function() {
 </head>
 <body>
 
-	<%@ include file="menu.jsp"%>
-
-	<div class="modal" style="display: none;">
-		<p>장바구니에 상품 추가 완료되었습니다.</p>
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">장바구니 추가 확인</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>장바구니에 상품 추가 완료되었습니다.</p>
 		<p>쇼핑을 계속하시겠습니까?</p>
-		<button class="shopping">쇼핑 계속하기</button>
-		<button class="go_cart">장바구니 이동</button>
-	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary shoppingBtn" data-bs-dismiss="modal">쇼핑 계속하기</button>
+        <button type="button" class="btn btn-secondary go_cartBtn">장바구니 이동</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<div class="wrap">
 		<div class="inner">
-			<header></header>
+			<header>
+				<%@ include file="menu.jsp"%>
+			</header>
 			<div class="contents">
 
 				<div class="card" style="width: 100%; margin: auto;">
@@ -194,12 +223,12 @@ $(function() {
 								data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseThree"
 								aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseThree">${book.profile}</button>
+								aria-controls="panelsStayOpen-collapseThree">저자 프로필</button>
 						</h2>
 						<div id="panelsStayOpen-collapseThree"
 							class="accordion-collapse collapse">
 							<div class="accordion-body" style="font-weight: lighter;">
-								<strong> ${book.bookdetail} </strong>
+								<strong> ${book.profile} </strong>
 							</div>
 						</div>
 					</div>
