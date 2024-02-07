@@ -367,7 +367,7 @@
 							class="accordion-collapse collapse">
 							<div class="accordion-body">
 								<c:choose>
-									<c:when test="${empty book.bookindex}">
+									<c:when test="${empty book.bookindex}"> 
 										<strong>목차 정보가 없습니다.</strong>
 									</c:when>
 									<c:otherwise>
