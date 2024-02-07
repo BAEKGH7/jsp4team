@@ -27,7 +27,7 @@
 				<div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
 					<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
 					<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
-					<button class="btn btn-jelly" onclick ="window.location.href='./myinfo'">마이페이지</button>
+					<button class="btn btn-jelly" onclick ="window.location.href='./basket'">장바구니</button>
 					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
 				</div>
 			</div>

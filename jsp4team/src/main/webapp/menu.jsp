@@ -7,7 +7,6 @@
 				<li onclick="window.location.href='./foreign'">해외도서</li>
 				<li onclick="window.location.href='./basket'">장바구니</li> <c:choose> <c:when test="${sessionScope.mname eq null }">
 				<li onclick ="window.location.href='./login'">로그인</li> </c:when> <c:otherwise>
-				<li onclick ="window.location.href='./myInfo'">마이페이지</li>
 				<li onclick ="window.location.href='./logout'">로그아웃</li> </c:otherwise> </c:choose>
 			</ul>
 		</nav>

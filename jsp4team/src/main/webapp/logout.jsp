@@ -10,19 +10,48 @@
 <link href="./css/menu.css" rel="stylesheet" />
 <link href="./css/logout.css" rel="stylesheet" />
 <script type="text/javascript" src="./js/menu.js"></script>
-<meta http-equiv="Refresh" content="5; ./index">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+//카운트 시작 숫자
+var count = 5;
+//카운트다운함수
+var countdown = setInterval(function(){
+//해당 태그에 아래 내용을 출력
+$("p.countdown").html("<b><font size='66pt'>" + count + "</font><b>초 후 이동 합니다.");
+    //0초면 초기화 후 이동되는 사이트
+    if (count == 0) {
+        clearInterval(countdown);
+        window.open('./index', "_self");
+        }
+    count--;//카운트 감소
+}, 1000);
+
+</script>
+
 </head>
 <body>
-	<header>
-   	<%@ include file="menu.jsp"%>
-	</header>
+		<header>
+			<div class="top1">
+				<img alt="logo" src="./img/logo.png" width="300px;">
+				<div class="search">
+					<input class="searchText" type="text" placeholder="검색어 입력" color="#a8a8a8;">
+					<button class="searchBtn">검색</button>
+				</div>
+			</div>
+			<div class="top2">
+				<div class="menu">
+				<%@ include file="menu.jsp"%>
+				</div>
+			</div>
+		</header>
    <div class="container">
       <div class="main">
          <div class="mainStyle">
             <article>
             <div class="logout">
                <h1>로그아웃 완료 ! 🫠 </h1><br>
-               <b>5초 후 메인 화면으로 이동합니다~</b>
+               <p class="countdown"></p>
             </div>
             </article>
          </div>
