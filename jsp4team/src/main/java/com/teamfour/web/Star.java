@@ -37,8 +37,9 @@ public class Star extends HttpServlet {
 		if(session.getAttribute("mid") != null) {
 			CommentDAO dao = new CommentDAO();
 			//별점 중복있나 검사
+			String isbn = request.getParameter("isbn");
 			String mid = String.valueOf(session.getAttribute("mid"));
-			int starResult = dao.checkStarPoint(mid);
+			int starResult = dao.checkStarPoint(mid, isbn);
 			System.out.println("별점 유무: " + starResult);
 			
 			//별점 가져오기
@@ -46,11 +47,12 @@ public class Star extends HttpServlet {
 			CommentDTO dto = new CommentDTO();
 			dto.setStarpoint(Util.str2Int(starPoint));
 			dto.setMid(mid);
-			dto.setIsbn(request.getParameter("isbn"));
+			dto.setIsbn(isbn);
 			
 			int result = dao.setStarPoint(dto);
 			
 			System.out.println("별점 입력 결과는: " + result);
+			response.sendRedirect("./detail?isbn=" + isbn);
 			
 		}
 	}

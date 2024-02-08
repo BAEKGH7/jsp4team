@@ -128,16 +128,17 @@ public class CommentDAO extends AbstractDAO {
 		return result;
 	}
 
-	public int checkStarPoint(String mid) {
+	public int checkStarPoint(String mid, String isbn) {
 		int result = 0;
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*) AS count FROM star WHERE mno=(SELECT mno FROM member WHERE mid=?)";
+		String sql = "SELECT COUNT(*) AS count FROM star WHERE mno=(SELECT mno FROM member WHERE mid=? AND isbn=?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mid);
+			pstmt.setString(2, isbn);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

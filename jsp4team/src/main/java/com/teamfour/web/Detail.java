@@ -50,7 +50,7 @@ public class Detail extends HttpServlet {
 			String mid = String.valueOf(session.getAttribute("mid"));
 			request.setAttribute("mid", mid);
 			//System.out.println(mid);
-			int starResult = dao2.checkStarPoint(mid);
+			int starResult = dao2.checkStarPoint(mid, isbn);
 			System.out.println("별점 유무: " + starResult);
 			request.setAttribute("starResult", starResult);
 		}

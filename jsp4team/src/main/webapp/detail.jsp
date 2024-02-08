@@ -392,7 +392,7 @@
 				<div id="starSection" style="margin-bottom:90px;">
 					<h2 class="title_text">별점</h2>
 					<!-- 별점 평균 출력 :  -->
-					<p style="margin:10px;">평균 별점: ${avgStarPoint }</p>
+					<p style="margin:10px;">평균 별점: <c:choose><c:when test="${empty avgStarPoint }">0.0</c:when><c:otherwise>${avgStarPoint }</c:otherwise></c:choose></p>
 					<!-- 로그인한 사람한테만 보이는 별점 입력폼? -->
 					<c:if test="${sessionScope.mid ne null && starResult ne 1 }"> <!-- 별점 이미 준 사람한테도 안 보여주기 -->
 						<div class="star-input">
