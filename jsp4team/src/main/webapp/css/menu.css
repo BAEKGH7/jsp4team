@@ -1,12 +1,11 @@
 @charset "UTF-8";
 nav{
-	
 	height: 50px;
-	margin-top: 300px;
 	background-color: orange;
 	text-align: center;
 	overflow: hidden;
 }
+
 nav ul{
 	margin: 0;
 	padding:0;

@@ -14,6 +14,7 @@ import javax.print.attribute.HashAttributeSet;
 
 import com.teamfour.db.DBConnection;
 import com.teamfour.dto.BookDTO;
+import com.teamfour.dto.MemberDTO;
 import com.teamfour.dto.testBookDTO;
 
 public class BookDAO extends AbstractDAO {
@@ -360,5 +361,35 @@ public class BookDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	public int bookInfo(BookDTO dto) {
+		int result = 0;
+		
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO book (isbn, booktitle, bookprice, author, publisher, publishdate, category, bookcover, bookdetail, bookindex, profile) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getIsbn());
+			pstmt.setString(2, dto.getBooktitle());
+			pstmt.setInt(3, dto.getBookprice());
+			pstmt.setString(4, dto.getAuthor());
+			pstmt.setString(5, dto.getPublisher());
+			pstmt.setString(6, dto.getPublishdate());
+			pstmt.setString(7, dto.getCategory());
+			pstmt.setString(8, dto.getBookcover());
+			pstmt.setString(9, dto.getBookdetail());
+			pstmt.setString(10, dto.getBookindex());
+			pstmt.setString(11, dto.getProfile());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+		return result;
 	}
 }

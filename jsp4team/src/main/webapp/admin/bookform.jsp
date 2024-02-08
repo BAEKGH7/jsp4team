@@ -25,7 +25,7 @@ $(document).ready(function (){
 	
 	$('.searchBtn').click(function (){
 		let searchItem = $('.searchText').val();
-		window.location.href="./search?keyword=" + searchItem;
+		window.location.href="../search?keyword=" + searchItem;
 	});
 	
 });
@@ -51,12 +51,12 @@ $(document).ready(function (){
 		</div>
 		<div class="bhItem">
 			<nav class="nav nav-pills bhNav">
-			  <a class="nav-link menuItem" href="./newBooks">신간</a>
-			  <a class="nav-link menuItem active" aria-current="page" href="./domestic">국내</a>
-			  <a class="nav-link menuItem" href="./foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
-			  <a class="nav-link menuItem" href="./login">로그인</a> </c:when> <c:otherwise>
-			  <a class="nav-link menuItem" href="./basket">장바구니</a>
-			  <a class="nav-link menuItem" href="./logout">로그아웃</a> </c:otherwise> </c:choose>
+			  <a class="nav-link menuItem" href="../newBooks">신간</a>
+			  <a class="nav-link menuItem active" aria-current="page" href="../domestic">국내</a>
+			  <a class="nav-link menuItem" href="../foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
+			  <a class="nav-link menuItem" href="../login">로그인</a> </c:when> <c:otherwise>
+			  <a class="nav-link menuItem" href="../basket">장바구니</a>
+			  <a class="nav-link menuItem" href="../logout">로그아웃</a> </c:otherwise> </c:choose>
 			</nav>
 		</div>
 		<%-- <div class="top2">
@@ -69,8 +69,21 @@ $(document).ready(function (){
 	
 	<section class="blContainer">
 		<h1>도서 정보 입력 폼</h1>
-		<form>
-		
+		<!-- 폼 작성 -->
+		<form action="./bookform" method="post">
+			<input type="text" name="isbn" placeholder="isbn을 입력하세요"><br>
+			<input type="text" name="booktitle" placeholder="제목을 입력하세요"><br>
+			<input type="text" name="bookprice" placeholder="가격을 입력하세요"><br>
+			<input type="text" name="author" placeholder="작가를 입력하세요"><br>
+			<input type="text" name="bookpublisher" placeholder="출판사를 입력하세요"><br>
+			<input type="text" name="bookpublishdate" placeholder="출간일을 입력하세요"><br>
+			<label><input type="radio" name="category" value="domestic"> 국내도서</label>
+	      	<label><input type="radio" name="category" value="foreign"> 해외도서</label><br>
+			<input type="text" name="bookcover" placeholder="책표지 이미지 링크"><br>
+			<input type="text" name="bookdetail" placeholder="상세정보를 입력하세요"><br>
+			<input type="text" name="bookindex" placeholder="목차를 입력하세요"><br>
+			<input type="text" name="profile" placeholder="작가소개를 입력하세요"><br>
+			<button type="submit">저장</button>
 		</form>
 	
 	</section>
