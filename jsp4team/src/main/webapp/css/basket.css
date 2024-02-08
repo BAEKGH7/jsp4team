@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 header{
-	background-color: blue;
+	background-color: white;
 }
 main{
-	background-color: gray;
+	background-color: white;
 	width: 100%;
 }
 .cartcontainer{
@@ -14,7 +14,7 @@ main{
 .s1{
 	box-sizing: border-box;
 	height: auto;
-	background-color: yellow;
+	background-color: white;
 	width: calc(70% - 20px);
 	margin: 10px;
 }
@@ -60,7 +60,7 @@ main{
 }
 .s2{
 	box-sizing: border-box;
-	background-color: green;
+	background-color: grey;
 	width: calc(30% - 20px);
 	margin: 10px;	
 }
