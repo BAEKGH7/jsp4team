@@ -27,8 +27,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		System.out.println("세션");
-		System.out.println(session.getAttribute("mname"));
+		//System.out.println("세션");
+		//System.out.println(session.getAttribute("mname"));
 		
 		String url = null;
 		if(session.getAttribute("mname") != null) {

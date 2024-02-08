@@ -105,5 +105,30 @@ public class MemberDAO extends AbstractDAO {
 		}
 		return ip;
 	}
+
+
+	public int checkAdmin(MemberDTO dto) {
+		int mgrade = 0;
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT mgrade FROM member WHERE mid=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMid());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mgrade = rs.getInt("mgrade");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		return mgrade;
+	}
 	
 }
