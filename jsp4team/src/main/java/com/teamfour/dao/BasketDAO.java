@@ -116,10 +116,156 @@ public class BasketDAO extends AbstractDAO {
 		
 		return list;
 	}
-
-	public List<CartDTO> priceList(int mno) {
+	
+	public List<CartDTO> cartList2(int mno) {
+		List<CartDTO> list = new ArrayList<CartDTO>();
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT cartno, isbn, booktitle, quantity, sumprice, ccheck, mno, mid from cartview WHERE mno=? AND ccheck='1'";
 		
-		return null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CartDTO c = new CartDTO();
+				c.setCartno(rs.getInt("cartno"));
+				c.setIsbn(rs.getString("isbn"));
+				c.setBooktitle(rs.getString("booktitle"));
+				c.setQuantity(rs.getInt("quantity"));
+				c.setSumprice(rs.getInt("sumprice"));
+				c.setCcheck(rs.getString("ccheck"));
+				c.setMno(rs.getInt("mno"));
+				c.setMid(rs.getString("mid"));
+				
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+		
+		
+		return list;
 	}
+
+	public int allUpdateCcheck(CartDTO dto) {
+		Connection conn = db.getConnection();
+		String sql = "UPDATE cart SET ccheck=? WHERE mno=?";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCcheck());
+			pstmt.setInt(2, dto.getMno());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int updateCcheck(CartDTO dto) {
+		Connection conn = db.getConnection();
+		String sql = "UPDATE cart SET ccheck=? WHERE mno=? AND isbn=?";
+		PreparedStatement pstmt = null;;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCcheck());
+			pstmt.setInt(2, dto.getMno());
+			pstmt.setString(3, dto.getIsbn());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int sumprice(CartDTO dto) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT SUM(sumprice) AS totalprice FROM cartview WHERE mno=? AND ccheck='1';";
+		int result = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getMno());
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return result;
+	}
+
+	public int sumprice(int mno) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT SUM(sumprice) AS totalprice FROM cartview WHERE mno=? AND ccheck='1';";
+		int result = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return result;
+	}
+
+	public int minusquantity(CartDTO dto) {
+		Connection conn = db.getConnection();
+		String sql = "UPDATE cart SET quantity=quantity-1 WHERE mno=? AND isbn=?";
+		PreparedStatement pstmt = null;;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCcheck());
+			pstmt.setInt(2, dto.getMno());
+			pstmt.setString(3, dto.getIsbn());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int plusquantity(CartDTO dto) {
+		Connection conn = db.getConnection();
+		String sql = "UPDATE cart SET quantity=quantity+1 WHERE mno=? AND isbn=?";
+		PreparedStatement pstmt = null;;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCcheck());
+			pstmt.setInt(2, dto.getMno());
+			pstmt.setString(3, dto.getIsbn());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 
 }
