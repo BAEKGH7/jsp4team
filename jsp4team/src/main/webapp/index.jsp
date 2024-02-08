@@ -83,7 +83,7 @@ $(document).ready(function (){
 			<c:forEach items="${newBook }" var="row">
 				<div class="col">
 					<div class="card h-100" onclick="location.href='./detail?isbn=${row.isbn }'">
-						<img src="${row.bookcover }" class="card-img-top" alt="newbook">
+						<img src="${row.bookcover }" class="card-img-top indexCardImg" alt="newbook">
 						<div class="card-body"></div>
 						<div class="card-footer">
 							<small class="text-body-secondary">${row.booktitle}<br>${row.author}
@@ -104,7 +104,7 @@ $(document).ready(function (){
 				<c:forEach items="${newDomestic}" var="row1" begin="0" end="5">
 					<div class="col">
 						<div class="card h-100" onclick="location.href='./detail?isbn=${row1.isbn }'">
-							<img src="${row1.bookcover }" class="card-img-top" alt="newbook1">
+							<img src="${row1.bookcover }" class="card-img-top indexCardImg" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">
 								<small class="text-body-secondary">${row1.booktitle}<br>${row1.author}
@@ -124,7 +124,7 @@ $(document).ready(function (){
 				<c:forEach items="${newForeign }" var="row3" >
 					<div class="col">
 						<div class="card h-100" onclick="location.href='./detail?isbn=${row3.isbn }'">
-							<img src="${row3.bookcover }" class="card-img-top" alt="newbook1">
+							<img src="${row3.bookcover }" class="card-img-top indexCardImg" alt="newbook1">
 							<div class="card-body"></div>
 							<div class="card-footer">
 								<small class="text-body-secondary">${row3.booktitle }<br>${row3.author}

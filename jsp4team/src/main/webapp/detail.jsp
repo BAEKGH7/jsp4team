@@ -13,18 +13,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>당근서점</title>
 <link href="./css/detail.css" rel="stylesheet" />
+<link href="./css/category.css" rel="stylesheet" />
+<link href="./css/index.css" rel="stylesheet" />
 <!-- jQuery 라이브러리를 먼저 로드 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 <script type="text/javascript" src="./js/menu.js"></script>
-<script type="text/javascript" src="./js/menu.js"></script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- ajax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- 여기에 스크립트 코드 삽입 -->
 <script type="text/javascript">
 	$(function() {
-
+		//검색 버튼
+		$('.searchBtn').click(function (){
+			let searchItem = $('.searchText').val();
+			window.location.href="./search?keyword=" + searchItem;
+		});
 		/* 댓글 수정기능 */
 		//댓글수정 form 만들기
 		$(".commentEdit")
@@ -286,7 +294,35 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="menu.jsp"%>
+	<%-- <%@ include file="menu.jsp"%> --%>
+	
+	<header>
+		<div class="top1">
+			<img class="logoImg" alt="logo" src="./img/logo.png" onclick="location.href='./'" width="300px;">
+			<div class="search">
+				<div class="input-group mb-3 searchInputGroup">
+				  <input type="text" class="form-control searchText" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+				  <button class="btn btn-outline-secondary btn-jelly searchBtn" type="button" id="button-addon2">검색</button>
+				</div>
+			</div>
+			<%-- <div class="joinLogin"> <c:choose> <c:when test="${sessionScope.mname eq null }">
+				<button class="btn btn-jelly" onclick ="window.location.href='./join'">회원가입</button>
+				<button class="btn btn-jelly" onclick ="window.location.href='./login'">로그인</button> </c:when> <c:otherwise>
+				<button class="btn btn-jelly" onclick ="window.location.href='./basket'">장바구니</button>
+				<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
+			</div> --%>
+		</div>
+		<div class="bhItem">
+			<nav class="nav nav-pills bhNav">
+			  <a class="nav-link menuItem active" aria-current="page" href="./newBooks">신간</a>
+			  <a class="nav-link menuItem" href="./domestic">국내</a>
+			  <a class="nav-link menuItem" href="./foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
+			  <a class="nav-link menuItem" href="./login">로그인</a> </c:when> <c:otherwise>
+			  <a class="nav-link menuItem" href="./basket">장바구니</a>
+			  <a class="nav-link menuItem" href="./logout">로그아웃</a> </c:otherwise> </c:choose>
+			</nav>
+		</div>
+	</header>
 
 	<div class="wrap">
 		<div class="inner">
