@@ -44,9 +44,20 @@ public class Detail extends HttpServlet {
 		
 		//로그인했을 때 session 값 잡기
 		HttpSession session = request.getSession();
-		String mid = (String)session.getAttribute("mid");
-		request.setAttribute("mid", mid);
-		System.out.println(mid);
+		
+		//별점
+		if(session.getAttribute("mid") != null) {
+			String mid = String.valueOf(session.getAttribute("mid"));
+			request.setAttribute("mid", mid);
+			//System.out.println(mid);
+			int starResult = dao2.checkStarPoint(mid);
+			System.out.println("별점 유무: " + starResult);
+			request.setAttribute("starResult", starResult);
+		}
+		
+		String avgStarPoint = dao2.avgStarPoint(isbn);
+		request.setAttribute("avgStarPoint", avgStarPoint);
+		
 		
 		// 리퀘스트디스패쳐 호출하기
 		RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");

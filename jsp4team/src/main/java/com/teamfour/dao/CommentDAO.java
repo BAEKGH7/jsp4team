@@ -101,6 +101,7 @@ public class CommentDAO extends AbstractDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
 			close(rs, pstmt, con);
 		}
 		return list;
@@ -117,12 +118,60 @@ public class CommentDAO extends AbstractDAO {
 			pstmt.setString(1, dto.getMid());
 			pstmt.setString(2, dto.getIsbn());
 			pstmt.setInt(3, dto.getStarpoint());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(null, pstmt, con);
 		}
 		
+		return result;
+	}
+
+	public int checkStarPoint(String mid) {
+		int result = 0;
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) AS count FROM star WHERE mno=(SELECT mno FROM member WHERE mid=?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		
+		return result;
+	}
+
+	public String avgStarPoint(String isbn) {
+		String result = null;
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT ROUND(AVG(starpoint), 1) AS average FROM star WHERE isbn=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, isbn);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getString("average");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
 		return result;
 	}
 }
