@@ -360,8 +360,8 @@
 							<option value="9">9</option>
 							<option value="10">10</option>
 						</select>
-						<button type="button" class="btn-card addcart" href="">장바구니</button>
-						<button type="button" class="btn-card buy" href="">구매하기</button>
+						<button type="button" class="btn btn-card btn-jelly addcart" href="">장바구니</button>
+						<button type="button" class="btn btn-card btn-jelly buy" href="">구매하기</button>
 					</div>
 
 				</div>
