@@ -13,7 +13,7 @@ h1{
 	color: red; 
 }
 
-.container1 {
+.container2 {
 	padding-top: 50px;
 	padding-left: 250px;
     padding-right: 250px; 
@@ -32,7 +32,7 @@ header{
 .logoImg:hover {
 	cursor: pointer;
 }
-
+/* 
 .top1 {
 	display: flex;
 	align-items: center;
@@ -44,7 +44,7 @@ header{
 
 .top2{
 	height: 50px;
-}
+} */
 
 .top > img {
 	height: 100px;

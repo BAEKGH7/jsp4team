@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./css/index.css">
 <link rel="stylesheet" href="./css/join.css">
-<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" href="./css/category.css">
+<!-- <link rel="stylesheet" href="./css/menu.css"> -->
 <script type="text/javascript" src="./js/join.js"></script>
 <!-- bootstrap -->
 <link
@@ -31,6 +32,12 @@
 	
 	$(function (){ //제이쿼리 시작
 		$('.id-alert, .name-alert, .pw-alert').hide();
+		
+		//검색 버튼
+		$('.searchBtn').click(function (){
+			let searchItem = $('.searchText').val();
+			window.location.href="./search?keyword=" + searchItem;
+		});
 		
 		//onchange()
 		//$("#id").change(function (){
@@ -146,13 +153,23 @@
 					<button class="btn btn-jelly" onclick ="window.location.href='./logout'">로그아웃</button> </c:otherwise> </c:choose>
 				</div>
 			</div>
-			<div class="top2">
+			<div class="bhItem">
+			<nav class="nav nav-pills bhNav">
+			  <a class="nav-link menuItem active" aria-current="page" href="./newBooks">신간</a>
+			  <a class="nav-link menuItem" href="./domestic">국내</a>
+			  <a class="nav-link menuItem" href="./foreign">해외</a> <c:choose> <c:when test="${sessionScope.mname eq null }">
+			  <a class="nav-link menuItem" href="./login">로그인</a> </c:when> <c:otherwise>
+			  <a class="nav-link menuItem" href="./basket">장바구니</a>
+			  <a class="nav-link menuItem" href="./logout">로그아웃</a> </c:otherwise> </c:choose>
+			</nav>
+		</div>
+			<%-- <div class="top2">
 				<div class="menu">
 				<%@ include file="menu.jsp"%>
 				</div>
-			</div>
+			</div> --%>
 		</header>
-	<div class="container1">
+	<div class="container2">
 	<!-- <h1>회원가입 페이지</h1> -->
 		<div class="main">
 			<div class="mainStyle">
