@@ -153,7 +153,7 @@
 			</div>
 		</header>
 	<div class="container1">
-	<h1>회원가입 페이지</h1>
+	<!-- <h1>회원가입 페이지</h1> -->
 		<div class="main">
 			<div class="mainStyle">
 				<article>
