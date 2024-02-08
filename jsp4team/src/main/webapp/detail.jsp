@@ -359,7 +359,7 @@
 							class="accordion-collapse collapse">
 							<div class="accordion-body">
 								<c:choose>
-									<c:when test="${empty book.bookindex}"> 
+									<c:when test="${empty book.bookindex}">
 										<strong>목차 정보가 없습니다.</strong>
 									</c:when>
 									<c:otherwise>
@@ -387,42 +387,67 @@
 				</div>
 
 				<article class="con"></article>
+				
+				<!-- 별점 창 -->
+				<div id="starSection" style="margin-bottom:90px;">
+					<h2 class="title_text">별점</h2>
+					<!-- 별점 평균 출력 :  -->
+					<!-- 로그인한 사람한테만 보이는 별점 입력폼? -->
+					<c:if test="${sessionScope.mid ne null }"> <!-- 별점 이미 준 사람한테도 안 보여주기 -->
+						<div class="star-input">
+							<div class="star-form">
+								<form method="post" action="./star">
+									<select name="starPoint" class="form-select" aria-label="Default select example">
+									  <option selected>별점을 선택하세요.</option>
+									  <option value="5">✨✨✨✨✨</option>
+									  <option value="4">✨✨✨✨</option>
+									  <option value="3">✨✨✨</option>
+									  <option value="2">✨✨</option>
+									  <option value="1">✨</option>
+									</select>
+									<input type="hidden" value="${param.isbn }" name="isbn" />
+									<button type="submit" class="btn btn-outline-warning star-btn" style="float:right;">별점 주기</button>
+								</form>
+							</div>
+						</div>
+					</c:if>
+				</div>
 
 				<!-- 댓글쓰는 창을 여기다가 만들어주겠습니다. 댓글내용, 누가, 어느, 2024-01-22 -->
-				<div id="replyList"></div>
+				<div id="replyList">
 
-				<h2 class="title_text">리뷰</h2>
-				<c:if test="${sessionScope.mid ne null }">
-					<div class="comment-write">
-						<div class="comment-form">
-							<form method="post" action="./comment">
-								<textarea id="commentcontent" name="commentcontent"></textarea>
-								<input type="hidden" value="${param.isbn }" name="isbn" />
-								<button id="comment-btn" type="submit">댓글쓰기</button>
-							</form>
-						</div>
-					</div>
-				</c:if>
-				<!-- 댓글 출력창 -->
-				<div class="comments">
-					<c:forEach items="${commentList }" var="co">
-						<div class="comment">
-							<div class="chead">
-								<div class="cname">${co.mname }님
-									<c:if test="${co.mid eq sessionScope.mid }">
-										<input type="hidden" class="cno" value="${co.cno }">
-
-										<img alt="삭제" src="./img/delete.png" class="commentDelete">
-										<img alt="수정" src="./img/edit.png" class="commentEdit">
-
-									</c:if>
-								</div>
-								<div class="cdate">${co.ip }/ ${co.cdate }</div>
+					<h2 class="title_text">리뷰</h2>
+					<c:if test="${sessionScope.mid ne null }">
+						<div class="comment-write">
+							<div class="comment-form">
+								<form method="post" action="./comment">
+									<textarea id="commentcontent" name="commentcontent"></textarea>
+									<input type="hidden" value="${param.isbn }" name="isbn" />
+									<button id="comment-btn" type="submit">댓글쓰기</button>
+								</form>
 							</div>
-							<div class="ccomment">${co.comment }</div>
 						</div>
-					</c:forEach>
+					</c:if>
+					<!-- 댓글 출력창 -->
+					<div class="comments">
+						<c:forEach items="${commentList }" var="co">
+							<div class="comment">
+								<div class="chead">
+									<div class="cname">${co.mname }님
+										<c:if test="${co.mid eq sessionScope.mid }">
+											<input type="hidden" class="cno" value="${co.cno }">
 
+											<img alt="삭제" src="./img/delete.png" class="commentDelete">
+											<img alt="수정" src="./img/edit.png" class="commentEdit">
+
+										</c:if>
+									</div>
+									<div class="cdate">${co.ip }/${co.cdate }</div>
+								</div>
+								<div class="ccomment">${co.comment }</div>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 package com.teamfour.dto;
 
 public class CommentDTO {
-	private int cno, mno, del;
+	private int cno, mno, del, starpoint;
 	private String comment, mid, mname, cdate, ip, isbn;
 
 	public int getCno() {
@@ -74,6 +74,14 @@ public class CommentDTO {
 
 	public void setDel(int del) {
 		this.del = del;
+	}
+
+	public int getStarpoint() {
+		return starpoint;
+	}
+
+	public void setStarpoint(int starpoint) {
+		this.starpoint = starpoint;
 	}
 
 }

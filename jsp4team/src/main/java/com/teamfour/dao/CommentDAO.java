@@ -101,9 +101,28 @@ public class CommentDAO extends AbstractDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
 			close(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	public int setStarPoint(CommentDTO dto) {
+		int result = 0;
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO star (mno, isbn, starpoint) VALUES ((SELECT mno FROM member WHERE mid=?), ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMid());
+			pstmt.setString(2, dto.getIsbn());
+			pstmt.setInt(3, dto.getStarpoint());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+		
+		return result;
 	}
 }
